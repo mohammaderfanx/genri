@@ -23,7 +23,7 @@ const data = llms.map((m) => ({ name: m.name, price: m.pricing.output, elo: m.sc
 
 function Tip({ active, payload }: { active?: boolean; payload?: { payload: (typeof data)[number] }[] }) {
   if (!active || !payload?.length) return null;
-  const d = payload[0].payload;
+  const d = payload[0]!.payload;
   return (
     <div className="rounded-md border bg-popover px-3 py-2 font-mono text-xs shadow-xl">
       <div className="mb-1 font-sans text-sm font-semibold">{d.name}</div>
