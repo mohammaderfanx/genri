@@ -61,8 +61,8 @@ function Index() {
 
   const llms = models.filter((m) => m.category !== "Image Generation");
   const motw = models.find((m) => m.slug === "claude-3-5-sonnet")!;
-  const fastest = [...llms].sort((a, b) => b.metrics.tps - a.metrics.tps)[0];
-  const openReason = [...models].filter((m) => m.license !== "Proprietary API").sort((a, b) => b.domains.Logic - a.domains.Logic)[0];
+  const fastest = [...llms].sort((a, b) => b.metrics.tps - a.metrics.tps)[0]!;
+  const openReason = [...models].filter((m) => m.license !== "Proprietary API").sort((a, b) => b.domains.Logic - a.domains.Logic)[0]!;
 
   const pill = (active: boolean) => `rounded-full border px-3 py-1 text-sm transition-colors ${active ? "border-primary bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`;
 

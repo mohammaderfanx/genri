@@ -33,14 +33,14 @@ function respond(m: AIModel, prompt: string, seed: number) {
     `Here's a concise answer.\n\nThe key insight is to avoid repeated work. Use a hash-based index so each element is touched once. For scale, partition by key and merge results; for correctness, assert idempotency at each boundary.\n\n- Time: O(n)\n- Space: O(k) distinct keys\n- Failure mode: hot keys — mitigate with consistent hashing and local buffers.`,
     `Let me reason step by step.\n\nAssume the contrary and derive a contradiction: construct N = product of all candidates, adjust by a constant, and observe its factors cannot lie in the assumed finite set. The same template generalizes by choosing the constant to preserve the residue class.\n\n∴ The claim holds. ∎`,
   ];
-  return styles[(seed + m.name.length) % styles.length];
+  return styles[(seed + m.name.length) % styles.length]!;
 }
 
 type Side = { model: AIModel; text: string; shown: number; ttft: number; tps: number; done: boolean };
 const pick2 = (fixed?: string): [AIModel, AIModel] => {
-  const a = llms.find((m) => m.slug === fixed) ?? llms[Math.floor(Math.random() * llms.length)];
+  const a = llms.find((m) => m.slug === fixed) ?? llms[Math.floor(Math.random() * llms.length)]!;
   const rest = llms.filter((m) => m !== a);
-  return [a, rest[Math.floor(Math.random() * rest.length)]];
+  return [a, rest[Math.floor(Math.random() * rest.length)]!];
 };
 
 function Arena() {
@@ -48,7 +48,7 @@ function Arena() {
   const [mode, setMode] = useState<"blind" | "side">(fixedA ? "side" : "blind");
   const [selA, setSelA] = useState(fixedA ?? "claude-3-5-sonnet");
   const [selB, setSelB] = useState("gpt-4o");
-  const [prompt, setPrompt] = useState(presets["Complex Python Refactor"]);
+  const [prompt, setPrompt] = useState(presets["Complex Python Refactor"]!);
   const [sides, setSides] = useState<Side[] | null>(null);
   const [vote, setVote] = useState<string | null>(null);
   const [elo, setElo] = useState<Record<string, number>>(() => Object.fromEntries(models.map((m) => [m.slug, m.scores.elo])));
@@ -58,7 +58,7 @@ function Arena() {
   useEffect(() => () => { if (timer.current) clearInterval(timer.current); }, []);
 
   const run = () => {
-    const pair = mode === "blind" ? pick2() : [llms.find((m) => m.slug === selA)!, llms.find((m) => m.slug === selB)!];
+    const pair = mode === "blind" ? pick2() : [llms.find((m) => m.slug === selA)!, llms.find((m) => m.slug === selB)!] as const;
     const seed = Math.floor(Math.random() * 3);
     const start = performance.now();
     setVote(null); setDelta({});
@@ -83,8 +83,8 @@ function Arena() {
 
   const cast = (v: "a" | "b" | "tie" | "bad") => {
     if (!sides || vote) return;
-    const [A, B] = sides.map((s) => s.model);
-    const ra = elo[A.slug], rb = elo[B.slug];
+    const A = sides[0]!.model, B = sides[1]!.model;
+    const ra = elo[A.slug]!, rb = elo[B.slug]!;
     const ea = 1 / (1 + 10 ** ((rb - ra) / 400));
     const sa = v === "a" ? 1 : v === "b" ? 0 : 0.5;
     const k = v === "bad" ? 8 : 32;
@@ -96,7 +96,7 @@ function Arena() {
 
   const done = sides?.every((s) => s.done);
   const reveal = mode === "side" || !!vote;
-  const board = [...llms].sort((x, y) => elo[y.slug] - elo[x.slug]);
+  const board = [...llms].sort((x, y) => elo[y.slug]! - elo[x.slug]!);
 
   return (
     <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 lg:grid-cols-[1fr_280px]">
@@ -123,7 +123,7 @@ function Arena() {
           )}
           <textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} rows={3} className="w-full resize-none bg-transparent text-sm outline-none" />
           <div className="mt-3 flex flex-wrap items-center gap-2">
-            {Object.keys(presets).map((p) => <button key={p} onClick={() => setPrompt(presets[p])} className="rounded-full border px-3 py-1 text-xs text-muted-foreground hover:text-foreground">{p}</button>)}
+            {Object.keys(presets).map((p) => <button key={p} onClick={() => setPrompt(presets[p]!)} className="rounded-full border px-3 py-1 text-xs text-muted-foreground hover:text-foreground">{p}</button>)}
             <button onClick={run} disabled={!prompt.trim()} className="ml-auto inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50">
               {mode === "blind" ? <Shuffle className="h-4 w-4" /> : <Send className="h-4 w-4" />}{mode === "blind" ? "Start battle" : "Run both"}
             </button>
@@ -138,7 +138,7 @@ function Arena() {
                   <div className="flex items-center justify-between border-b px-4 py-2.5">
                     <span className="font-medium">{reveal ? <Link to="/models/$slug" params={{ slug: s.model.slug }} className="hover:text-primary">{s.model.name}</Link> : `Model ${i ? "B" : "A"}`}</span>
                     {delta[s.model.slug] !== undefined && (
-                      <span className={`animate-rise font-mono text-sm ${delta[s.model.slug] >= 0 ? "text-gain" : "text-loss"}`}>{elo[s.model.slug]} ({delta[s.model.slug] >= 0 ? "+" : ""}{delta[s.model.slug]})</span>
+                      <span className={`animate-rise font-mono text-sm ${delta[s.model.slug]! >= 0 ? "text-gain" : "text-loss"}`}>{elo[s.model.slug]} ({delta[s.model.slug]! >= 0 ? "+" : ""}{delta[s.model.slug]})</span>
                     )}
                   </div>
                   <pre className="flex-1 whitespace-pre-wrap p-4 font-sans text-sm leading-relaxed">{s.text.slice(0, s.shown)}{!s.done && <span className="caret text-primary">▍</span>}</pre>
@@ -166,7 +166,7 @@ function Arena() {
             <li key={m.slug} className="flex items-center gap-2 rounded px-2 py-1.5 transition-colors hover:bg-muted">
               <span className="w-4 text-muted-foreground">{i + 1}</span>
               <span className="flex-1 truncate font-sans">{m.name}</span>
-              <span className={delta[m.slug] ? (delta[m.slug] > 0 ? "text-gain" : "text-loss") : ""}>{elo[m.slug]}</span>
+              <span className={delta[m.slug] ? (delta[m.slug]! > 0 ? "text-gain" : "text-loss") : ""}>{elo[m.slug]}</span>
             </li>
           ))}
         </ol>
