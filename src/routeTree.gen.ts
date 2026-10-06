@@ -12,6 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as ArenaRouteImport } from './routes/arena'
+import { Route as DeveloperRouteImport } from './routes/developer'
+import { Route as RouterCalculatorRouteImport } from './routes/router-calculator'
+import { Route as StatusRouteImport } from './routes/status'
+import { Route as BenchmarksCustomRouteImport } from './routes/benchmarks.custom'
+import { Route as EvalsAgenticRouteImport } from './routes/evals.agentic'
 import { Route as ModelsSlugRouteImport } from './routes/models.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +34,31 @@ const ArenaRoute = ArenaRouteImport.update({
   path: '/arena',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeveloperRoute = DeveloperRouteImport.update({
+  id: '/developer',
+  path: '/developer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RouterCalculatorRoute = RouterCalculatorRouteImport.update({
+  id: '/router-calculator',
+  path: '/router-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatusRoute = StatusRouteImport.update({
+  id: '/status',
+  path: '/status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BenchmarksCustomRoute = BenchmarksCustomRouteImport.update({
+  id: '/benchmarks/custom',
+  path: '/benchmarks/custom',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EvalsAgenticRoute = EvalsAgenticRouteImport.update({
+  id: '/evals/agentic',
+  path: '/evals/agentic',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ModelsSlugRoute = ModelsSlugRouteImport.update({
   id: '/models/$slug',
   path: '/models/$slug',
@@ -39,12 +69,22 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
   '/arena': typeof ArenaRoute
+  '/developer': typeof DeveloperRoute
+  '/router-calculator': typeof RouterCalculatorRoute
+  '/status': typeof StatusRoute
+  '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/evals/agentic': typeof EvalsAgenticRoute
   '/models/$slug': typeof ModelsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
   '/arena': typeof ArenaRoute
+  '/developer': typeof DeveloperRoute
+  '/router-calculator': typeof RouterCalculatorRoute
+  '/status': typeof StatusRoute
+  '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/evals/agentic': typeof EvalsAgenticRoute
   '/models/$slug': typeof ModelsSlugRoute
 }
 export interface FileRoutesById {
@@ -52,20 +92,58 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
   '/arena': typeof ArenaRoute
+  '/developer': typeof DeveloperRoute
+  '/router-calculator': typeof RouterCalculatorRoute
+  '/status': typeof StatusRoute
+  '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/evals/agentic': typeof EvalsAgenticRoute
   '/models/$slug': typeof ModelsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analytics' | '/arena' | '/models/$slug'
+  fullPaths:
+    | '/'
+    | '/analytics'
+    | '/arena'
+    | '/developer'
+    | '/router-calculator'
+    | '/status'
+    | '/benchmarks/custom'
+    | '/evals/agentic'
+    | '/models/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analytics' | '/arena' | '/models/$slug'
-  id: '__root__' | '/' | '/analytics' | '/arena' | '/models/$slug'
+  to:
+    | '/'
+    | '/analytics'
+    | '/arena'
+    | '/developer'
+    | '/router-calculator'
+    | '/status'
+    | '/benchmarks/custom'
+    | '/evals/agentic'
+    | '/models/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/analytics'
+    | '/arena'
+    | '/developer'
+    | '/router-calculator'
+    | '/status'
+    | '/benchmarks/custom'
+    | '/evals/agentic'
+    | '/models/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnalyticsRoute: typeof AnalyticsRoute
   ArenaRoute: typeof ArenaRoute
+  DeveloperRoute: typeof DeveloperRoute
+  RouterCalculatorRoute: typeof RouterCalculatorRoute
+  StatusRoute: typeof StatusRoute
+  BenchmarksCustomRoute: typeof BenchmarksCustomRoute
+  EvalsAgenticRoute: typeof EvalsAgenticRoute
   ModelsSlugRoute: typeof ModelsSlugRoute
 }
 
@@ -92,6 +170,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArenaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/developer': {
+      id: '/developer'
+      path: '/developer'
+      fullPath: '/developer'
+      preLoaderRoute: typeof DeveloperRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/router-calculator': {
+      id: '/router-calculator'
+      path: '/router-calculator'
+      fullPath: '/router-calculator'
+      preLoaderRoute: typeof RouterCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/status': {
+      id: '/status'
+      path: '/status'
+      fullPath: '/status'
+      preLoaderRoute: typeof StatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/benchmarks/custom': {
+      id: '/benchmarks/custom'
+      path: '/benchmarks/custom'
+      fullPath: '/benchmarks/custom'
+      preLoaderRoute: typeof BenchmarksCustomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evals/agentic': {
+      id: '/evals/agentic'
+      path: '/evals/agentic'
+      fullPath: '/evals/agentic'
+      preLoaderRoute: typeof EvalsAgenticRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/models/$slug': {
       id: '/models/$slug'
       path: '/models/$slug'
@@ -106,6 +219,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalyticsRoute: AnalyticsRoute,
   ArenaRoute: ArenaRoute,
+  DeveloperRoute: DeveloperRoute,
+  RouterCalculatorRoute: RouterCalculatorRoute,
+  StatusRoute: StatusRoute,
+  BenchmarksCustomRoute: BenchmarksCustomRoute,
+  EvalsAgenticRoute: EvalsAgenticRoute,
   ModelsSlugRoute: ModelsSlugRoute,
 }
 export const routeTree = rootRouteImport
