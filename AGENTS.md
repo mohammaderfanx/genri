@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Demo data (models, telemetry, agentic evals) lives in src/lib as deterministic seeded modules; live fluctuations run client-side in useEffect so SSR and hydration match.
