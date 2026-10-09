@@ -15,7 +15,7 @@ const Body = z.object({
 // Each catalog tier is served by a real model on the Lovable AI gateway.
 const servedBy = (price: number) => (price < 1 ? "openai/gpt-5.4-nano" : price < 5 ? "openai/gpt-6-luna" : "openai/gpt-5.4-mini");
 
-export const Route = createFileRoute("/api/public/v1/route")({
+export const Route = createFileRoute("/api/public/v1")({
   server: {
     handlers: {
       OPTIONS: () => new Response(null, { status: 204, headers: cors }),
