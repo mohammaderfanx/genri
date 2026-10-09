@@ -60,10 +60,3 @@ function toGatewayError(e: unknown) {
   return new GatewayError(status, msg);
 }
 
-/** Real gateway models used as the judging committee and benchmark targets. */
-export const JUDGES = [
-  { id: "openai/gpt-6-astra", label: "Judge A · GPT-6 Astra" },
-  { id: "openai/gpt-5.6-terra", label: "Judge B · GPT-5.6 Terra" },
-  { id: "openai/gpt-5.4-mini", label: "Judge C · GPT-5.4 mini" },
-] as const;
-export const CANDIDATES = ["openai/gpt-6-luna", "openai/gpt-5.4-nano", "openai/gpt-5.6-luna", "openai/gpt-5.4-mini"] as const;
