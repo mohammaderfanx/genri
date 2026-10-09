@@ -18,6 +18,9 @@ import { Route as StatusRouteImport } from './routes/status'
 import { Route as BenchmarksCustomRouteImport } from './routes/benchmarks.custom'
 import { Route as EvalsAgenticRouteImport } from './routes/evals.agentic'
 import { Route as ModelsSlugRouteImport } from './routes/models.$slug'
+import { Route as ApiPublicV1RouteRouteImport } from './routes/api/public/v1/route'
+import { Route as ApiPublicV1ModelsRouteImport } from './routes/api/public/v1/models'
+import { Route as ApiPublicV1TelemetryLiveRouteImport } from './routes/api/public/v1/telemetry/live'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +67,22 @@ const ModelsSlugRoute = ModelsSlugRouteImport.update({
   path: '/models/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicV1RouteRoute = ApiPublicV1RouteRouteImport.update({
+  id: '/api/public/v1',
+  path: '/api/public/v1',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicV1ModelsRoute = ApiPublicV1ModelsRouteImport.update({
+  id: '/models',
+  path: '/models',
+  getParentRoute: () => ApiPublicV1RouteRoute,
+} as any)
+const ApiPublicV1TelemetryLiveRoute =
+  ApiPublicV1TelemetryLiveRouteImport.update({
+    id: '/telemetry/live',
+    path: '/telemetry/live',
+    getParentRoute: () => ApiPublicV1RouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -75,6 +94,9 @@ export interface FileRoutesByFullPath {
   '/benchmarks/custom': typeof BenchmarksCustomRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/models/$slug': typeof ModelsSlugRoute
+  '/api/public/v1': typeof ApiPublicV1RouteRouteWithChildren
+  '/api/public/v1/models': typeof ApiPublicV1ModelsRoute
+  '/api/public/v1/telemetry/live': typeof ApiPublicV1TelemetryLiveRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +108,9 @@ export interface FileRoutesByTo {
   '/benchmarks/custom': typeof BenchmarksCustomRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/models/$slug': typeof ModelsSlugRoute
+  '/api/public/v1': typeof ApiPublicV1RouteRouteWithChildren
+  '/api/public/v1/models': typeof ApiPublicV1ModelsRoute
+  '/api/public/v1/telemetry/live': typeof ApiPublicV1TelemetryLiveRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +123,9 @@ export interface FileRoutesById {
   '/benchmarks/custom': typeof BenchmarksCustomRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/models/$slug': typeof ModelsSlugRoute
+  '/api/public/v1': typeof ApiPublicV1RouteRouteWithChildren
+  '/api/public/v1/models': typeof ApiPublicV1ModelsRoute
+  '/api/public/v1/telemetry/live': typeof ApiPublicV1TelemetryLiveRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +139,9 @@ export interface FileRouteTypes {
     | '/benchmarks/custom'
     | '/evals/agentic'
     | '/models/$slug'
+    | '/api/public/v1'
+    | '/api/public/v1/models'
+    | '/api/public/v1/telemetry/live'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +153,9 @@ export interface FileRouteTypes {
     | '/benchmarks/custom'
     | '/evals/agentic'
     | '/models/$slug'
+    | '/api/public/v1'
+    | '/api/public/v1/models'
+    | '/api/public/v1/telemetry/live'
   id:
     | '__root__'
     | '/'
@@ -133,6 +167,9 @@ export interface FileRouteTypes {
     | '/benchmarks/custom'
     | '/evals/agentic'
     | '/models/$slug'
+    | '/api/public/v1'
+    | '/api/public/v1/models'
+    | '/api/public/v1/telemetry/live'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,6 +182,7 @@ export interface RootRouteChildren {
   BenchmarksCustomRoute: typeof BenchmarksCustomRoute
   EvalsAgenticRoute: typeof EvalsAgenticRoute
   ModelsSlugRoute: typeof ModelsSlugRoute
+  ApiPublicV1RouteRoute: typeof ApiPublicV1RouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -212,8 +250,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModelsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/v1': {
+      id: '/api/public/v1'
+      path: '/api/public/v1'
+      fullPath: '/api/public/v1'
+      preLoaderRoute: typeof ApiPublicV1RouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/v1/models': {
+      id: '/api/public/v1/models'
+      path: '/models'
+      fullPath: '/api/public/v1/models'
+      preLoaderRoute: typeof ApiPublicV1ModelsRouteImport
+      parentRoute: typeof ApiPublicV1RouteRoute
+    }
+    '/api/public/v1/telemetry/live': {
+      id: '/api/public/v1/telemetry/live'
+      path: '/telemetry/live'
+      fullPath: '/api/public/v1/telemetry/live'
+      preLoaderRoute: typeof ApiPublicV1TelemetryLiveRouteImport
+      parentRoute: typeof ApiPublicV1RouteRoute
+    }
   }
 }
+
+interface ApiPublicV1RouteRouteChildren {
+  ApiPublicV1ModelsRoute: typeof ApiPublicV1ModelsRoute
+  ApiPublicV1TelemetryLiveRoute: typeof ApiPublicV1TelemetryLiveRoute
+}
+
+const ApiPublicV1RouteRouteChildren: ApiPublicV1RouteRouteChildren = {
+  ApiPublicV1ModelsRoute: ApiPublicV1ModelsRoute,
+  ApiPublicV1TelemetryLiveRoute: ApiPublicV1TelemetryLiveRoute,
+}
+
+const ApiPublicV1RouteRouteWithChildren =
+  ApiPublicV1RouteRoute._addFileChildren(ApiPublicV1RouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -225,6 +297,7 @@ const rootRouteChildren: RootRouteChildren = {
   BenchmarksCustomRoute: BenchmarksCustomRoute,
   EvalsAgenticRoute: EvalsAgenticRoute,
   ModelsSlugRoute: ModelsSlugRoute,
+  ApiPublicV1RouteRoute: ApiPublicV1RouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
