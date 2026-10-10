@@ -10,14 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as ArenaRouteImport } from './routes/arena'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DeveloperRouteImport } from './routes/developer'
 import { Route as RouterCalculatorRouteImport } from './routes/router-calculator'
 import { Route as StatusRouteImport } from './routes/status'
 import { Route as BenchmarksCustomRouteImport } from './routes/benchmarks.custom'
 import { Route as EvalsAgenticRouteImport } from './routes/evals.agentic'
+import { Route as EvalsJudgeArenaRouteImport } from './routes/evals.judge-arena'
 import { Route as ModelsSlugRouteImport } from './routes/models.$slug'
+import { Route as SearchSemanticRouteImport } from './routes/search.semantic'
+import { Route as AuthenticatedDevelopersPortalRouteImport } from './routes/_authenticated/developers.portal'
+import { Route as AuthenticatedSettingsOrganizationRouteImport } from './routes/_authenticated/settings.organization'
 import { Route as ApiPublicV1RouteRouteImport } from './routes/api/public/v1/route'
 import { Route as ApiPublicV1ModelsRouteImport } from './routes/api/public/v1/models'
 import { Route as ApiPublicV1TelemetryLiveRouteImport } from './routes/api/public/v1/telemetry/live'
@@ -25,6 +31,10 @@ import { Route as ApiPublicV1TelemetryLiveRouteImport } from './routes/api/publi
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnalyticsRoute = AnalyticsRouteImport.update({
@@ -35,6 +45,11 @@ const AnalyticsRoute = AnalyticsRouteImport.update({
 const ArenaRoute = ArenaRouteImport.update({
   id: '/arena',
   path: '/arena',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DeveloperRoute = DeveloperRouteImport.update({
@@ -62,11 +77,33 @@ const EvalsAgenticRoute = EvalsAgenticRouteImport.update({
   path: '/evals/agentic',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EvalsJudgeArenaRoute = EvalsJudgeArenaRouteImport.update({
+  id: '/evals/judge-arena',
+  path: '/evals/judge-arena',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ModelsSlugRoute = ModelsSlugRouteImport.update({
   id: '/models/$slug',
   path: '/models/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SearchSemanticRoute = SearchSemanticRouteImport.update({
+  id: '/search/semantic',
+  path: '/search/semantic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDevelopersPortalRoute =
+  AuthenticatedDevelopersPortalRouteImport.update({
+    id: '/developers/portal',
+    path: '/developers/portal',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSettingsOrganizationRoute =
+  AuthenticatedSettingsOrganizationRouteImport.update({
+    id: '/settings/organization',
+    path: '/settings/organization',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const ApiPublicV1RouteRoute = ApiPublicV1RouteRouteImport.update({
   id: '/api/public/v1',
   path: '/api/public/v1',
@@ -88,13 +125,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
   '/arena': typeof ArenaRoute
+  '/auth': typeof AuthRoute
   '/developer': typeof DeveloperRoute
   '/router-calculator': typeof RouterCalculatorRoute
   '/status': typeof StatusRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
   '/evals/agentic': typeof EvalsAgenticRoute
+  '/evals/judge-arena': typeof EvalsJudgeArenaRoute
   '/models/$slug': typeof ModelsSlugRoute
+  '/search/semantic': typeof SearchSemanticRoute
   '/api/public/v1': typeof ApiPublicV1RouteRouteWithChildren
+  '/developers/portal': typeof AuthenticatedDevelopersPortalRoute
+  '/settings/organization': typeof AuthenticatedSettingsOrganizationRoute
   '/api/public/v1/models': typeof ApiPublicV1ModelsRoute
   '/api/public/v1/telemetry/live': typeof ApiPublicV1TelemetryLiveRoute
 }
@@ -102,28 +144,39 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
   '/arena': typeof ArenaRoute
+  '/auth': typeof AuthRoute
   '/developer': typeof DeveloperRoute
   '/router-calculator': typeof RouterCalculatorRoute
   '/status': typeof StatusRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
   '/evals/agentic': typeof EvalsAgenticRoute
+  '/evals/judge-arena': typeof EvalsJudgeArenaRoute
   '/models/$slug': typeof ModelsSlugRoute
+  '/search/semantic': typeof SearchSemanticRoute
   '/api/public/v1': typeof ApiPublicV1RouteRouteWithChildren
+  '/developers/portal': typeof AuthenticatedDevelopersPortalRoute
+  '/settings/organization': typeof AuthenticatedSettingsOrganizationRoute
   '/api/public/v1/models': typeof ApiPublicV1ModelsRoute
   '/api/public/v1/telemetry/live': typeof ApiPublicV1TelemetryLiveRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/analytics': typeof AnalyticsRoute
   '/arena': typeof ArenaRoute
+  '/auth': typeof AuthRoute
   '/developer': typeof DeveloperRoute
   '/router-calculator': typeof RouterCalculatorRoute
   '/status': typeof StatusRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
   '/evals/agentic': typeof EvalsAgenticRoute
+  '/evals/judge-arena': typeof EvalsJudgeArenaRoute
   '/models/$slug': typeof ModelsSlugRoute
+  '/search/semantic': typeof SearchSemanticRoute
   '/api/public/v1': typeof ApiPublicV1RouteRouteWithChildren
+  '/_authenticated/developers/portal': typeof AuthenticatedDevelopersPortalRoute
+  '/_authenticated/settings/organization': typeof AuthenticatedSettingsOrganizationRoute
   '/api/public/v1/models': typeof ApiPublicV1ModelsRoute
   '/api/public/v1/telemetry/live': typeof ApiPublicV1TelemetryLiveRoute
 }
@@ -133,13 +186,18 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics'
     | '/arena'
+    | '/auth'
     | '/developer'
     | '/router-calculator'
     | '/status'
     | '/benchmarks/custom'
     | '/evals/agentic'
+    | '/evals/judge-arena'
     | '/models/$slug'
+    | '/search/semantic'
     | '/api/public/v1'
+    | '/developers/portal'
+    | '/settings/organization'
     | '/api/public/v1/models'
     | '/api/public/v1/telemetry/live'
   fileRoutesByTo: FileRoutesByTo
@@ -147,41 +205,56 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics'
     | '/arena'
+    | '/auth'
     | '/developer'
     | '/router-calculator'
     | '/status'
     | '/benchmarks/custom'
     | '/evals/agentic'
+    | '/evals/judge-arena'
     | '/models/$slug'
+    | '/search/semantic'
     | '/api/public/v1'
+    | '/developers/portal'
+    | '/settings/organization'
     | '/api/public/v1/models'
     | '/api/public/v1/telemetry/live'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/analytics'
     | '/arena'
+    | '/auth'
     | '/developer'
     | '/router-calculator'
     | '/status'
     | '/benchmarks/custom'
     | '/evals/agentic'
+    | '/evals/judge-arena'
     | '/models/$slug'
+    | '/search/semantic'
     | '/api/public/v1'
+    | '/_authenticated/developers/portal'
+    | '/_authenticated/settings/organization'
     | '/api/public/v1/models'
     | '/api/public/v1/telemetry/live'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AnalyticsRoute: typeof AnalyticsRoute
   ArenaRoute: typeof ArenaRoute
+  AuthRoute: typeof AuthRoute
   DeveloperRoute: typeof DeveloperRoute
   RouterCalculatorRoute: typeof RouterCalculatorRoute
   StatusRoute: typeof StatusRoute
   BenchmarksCustomRoute: typeof BenchmarksCustomRoute
   EvalsAgenticRoute: typeof EvalsAgenticRoute
+  EvalsJudgeArenaRoute: typeof EvalsJudgeArenaRoute
   ModelsSlugRoute: typeof ModelsSlugRoute
+  SearchSemanticRoute: typeof SearchSemanticRoute
   ApiPublicV1RouteRoute: typeof ApiPublicV1RouteRouteWithChildren
 }
 
@@ -192,6 +265,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/analytics': {
@@ -206,6 +286,13 @@ declare module '@tanstack/react-router' {
       path: '/arena'
       fullPath: '/arena'
       preLoaderRoute: typeof ArenaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/developer': {
@@ -243,12 +330,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EvalsAgenticRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/evals/judge-arena': {
+      id: '/evals/judge-arena'
+      path: '/evals/judge-arena'
+      fullPath: '/evals/judge-arena'
+      preLoaderRoute: typeof EvalsJudgeArenaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/models/$slug': {
       id: '/models/$slug'
       path: '/models/$slug'
       fullPath: '/models/$slug'
       preLoaderRoute: typeof ModelsSlugRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/search/semantic': {
+      id: '/search/semantic'
+      path: '/search/semantic'
+      fullPath: '/search/semantic'
+      preLoaderRoute: typeof SearchSemanticRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/developers/portal': {
+      id: '/_authenticated/developers/portal'
+      path: '/developers/portal'
+      fullPath: '/developers/portal'
+      preLoaderRoute: typeof AuthenticatedDevelopersPortalRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/settings/organization': {
+      id: '/_authenticated/settings/organization'
+      path: '/settings/organization'
+      fullPath: '/settings/organization'
+      preLoaderRoute: typeof AuthenticatedSettingsOrganizationRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/api/public/v1': {
       id: '/api/public/v1'
@@ -274,6 +389,20 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDevelopersPortalRoute: typeof AuthenticatedDevelopersPortalRoute
+  AuthenticatedSettingsOrganizationRoute: typeof AuthenticatedSettingsOrganizationRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDevelopersPortalRoute: AuthenticatedDevelopersPortalRoute,
+  AuthenticatedSettingsOrganizationRoute:
+    AuthenticatedSettingsOrganizationRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 interface ApiPublicV1RouteRouteChildren {
   ApiPublicV1ModelsRoute: typeof ApiPublicV1ModelsRoute
   ApiPublicV1TelemetryLiveRoute: typeof ApiPublicV1TelemetryLiveRoute
@@ -289,14 +418,18 @@ const ApiPublicV1RouteRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AnalyticsRoute: AnalyticsRoute,
   ArenaRoute: ArenaRoute,
+  AuthRoute: AuthRoute,
   DeveloperRoute: DeveloperRoute,
   RouterCalculatorRoute: RouterCalculatorRoute,
   StatusRoute: StatusRoute,
   BenchmarksCustomRoute: BenchmarksCustomRoute,
   EvalsAgenticRoute: EvalsAgenticRoute,
+  EvalsJudgeArenaRoute: EvalsJudgeArenaRoute,
   ModelsSlugRoute: ModelsSlugRoute,
+  SearchSemanticRoute: SearchSemanticRoute,
   ApiPublicV1RouteRoute: ApiPublicV1RouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
