@@ -26,7 +26,7 @@ export async function generate(model: string, instructions: string, prompt: stri
     model: provider.responses(model),
     system: instructions,
     prompt,
-    onError: ({ error }) => { failure = error; },
+    onError: ({ error }: { error: unknown }) => { failure = error; },
     providerOptions: { openai: { store: false, forceReasoning: true, reasoningEffort: effort, reasoningSummary: "auto", include: ["reasoning.encrypted_content"] } },
   });
   let text = "";

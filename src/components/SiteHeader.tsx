@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Search, Swords, LineChart, Activity, Calculator, Bot, FlaskConical, KeyRound, GitCompare, Code2 } from "lucide-react";
+import { Search, Sparkles, Gavel, Terminal, Building2, LogOut, Swords, LineChart, Activity, Calculator, Bot, FlaskConical, KeyRound, GitCompare, Code2 } from "lucide-react";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { models } from "@/lib/models";
-import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { useUser } from "@/lib/auth";
 import { TickerTape } from "./TickerTape";
 
 const links = [
@@ -13,12 +14,17 @@ const links = [
   { to: "/router-calculator", label: "Router", icon: Calculator },
   { to: "/evals/agentic", label: "Agentic", icon: Bot },
   { to: "/benchmarks/custom", label: "Custom Evals", icon: FlaskConical },
-  { to: "/developer", label: "Developer", icon: KeyRound },
+  { to: "/search/semantic", label: "Smart Search", icon: Sparkles },
+  { to: "/evals/judge-arena", label: "Judge Arena", icon: Gavel },
+  { to: "/developers/portal", label: "API Portal", icon: Terminal },
+  { to: "/settings/organization", label: "Workspace", icon: Building2 },
+  { to: "/developer", label: "Code Export", icon: KeyRound },
 ] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const { user } = useUser();
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); setOpen((o) => !o); }
@@ -40,7 +46,9 @@ export function SiteHeader() {
           <Search className="h-4 w-4" /><span className="truncate">Search or run a command…</span>
           <kbd className="ml-auto hidden rounded border px-1.5 font-mono text-[10px] sm:inline">⌘K</kbd>
         </button>
-        <button onClick={() => toast("Accounts are coming soon")} className="ml-auto shrink-0 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Sign in</button>
+        {user ? (
+          <button onClick={() => supabase.auth.signOut()} title={user.email ?? ""} className="ml-auto inline-flex shrink-0 items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm hover:bg-accent"><LogOut className="h-4 w-4" /><span className="hidden max-w-40 truncate sm:inline">{user.email}</span></button>
+        ) : <Link to="/auth" className="ml-auto shrink-0 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Sign in</Link>}
       </div>
       <nav className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-3 pb-2 [scrollbar-width:none]">
         {links.map(({ to, label, icon: Icon }) => (
@@ -58,6 +66,7 @@ export function SiteHeader() {
             <CommandItem onSelect={() => go(() => navigate({ to: "/router-calculator", search: { tokens: 10 } }))}><Calculator className="mr-2 h-4 w-4" />Calculate ROI for 10M tokens</CommandItem>
             <CommandItem onSelect={() => go(() => navigate({ to: "/status", search: { host: "Groq" } }))}><Activity className="mr-2 h-4 w-4" />Check Groq live status</CommandItem>
             <CommandItem onSelect={() => go(() => navigate({ to: "/developer" }))}><Code2 className="mr-2 h-4 w-4" />Export API code</CommandItem>
+            <CommandItem onSelect={() => go(() => navigate({ to: "/search/semantic" }))}><Sparkles className="mr-2 h-4 w-4" />Find a model by description</CommandItem>
           </CommandGroup>
           <CommandGroup heading="Pages">
             {links.map((l) => <CommandItem key={l.to} onSelect={() => go(() => navigate({ to: l.to }))}><l.icon className="mr-2 h-4 w-4" />{l.label}</CommandItem>)}
@@ -94,7 +103,7 @@ export function PageTitle({ eyebrow, title, sub }: { eyebrow: string; title: str
   );
 }
 
-export function Panel({ title, sub, children, className = "" }: { title: string; sub?: string; children: React.ReactNode; className?: string }) {
+export function Panel({ title, sub, children, className = "" }: { title: string; sub?: string | undefined; children: React.ReactNode; className?: string }) {
   return (
     <section className={`rounded-xl border bg-card p-5 ${className}`}>
       <h2 className="font-semibold">{title}</h2>
