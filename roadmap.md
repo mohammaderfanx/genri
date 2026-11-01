@@ -3,3 +3,9 @@
 - [x] Phase 2: ticker, ⌘K actions, radar overlay, status, router, agentic, custom evals, code export
 - [x] Phase 3 build: sign-in, workspaces/roles/budget/audit log, API keys + public API (models, route, live SSE), smart search, judge arena, live benchmark jobs, exports
 - [ ] Phase 3 end-to-end check signed in (blocked: hosted database is paused — needs user to resume)
+- [ ] Phase 4: optimizer with diff and templates
+- [ ] Phase 4: five sandbox replays with telemetry
+- [ ] Phase 4: runnable CLI, CI history and SDK examples
+- [ ] Phase 4: fine-tune comparison and report import
+- [ ] Phase 4: persistence and live execution where services are available
+- [ ] Phase 4: tests and browser verification
