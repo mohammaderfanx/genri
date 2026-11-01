@@ -103,7 +103,7 @@ export function PageTitle({ eyebrow, title, sub }: { eyebrow: string; title: str
   );
 }
 
-export function Panel({ title, sub, children, className = "" }: { title: string; sub?: string; children: React.ReactNode; className?: string }) {
+export function Panel({ title, sub, children, className = "" }: { title: string; sub?: string | undefined; children: React.ReactNode; className?: string }) {
   return (
     <section className={`rounded-xl border bg-card p-5 ${className}`}>
       <h2 className="font-semibold">{title}</h2>

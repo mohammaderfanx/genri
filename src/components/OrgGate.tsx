@@ -21,7 +21,7 @@ export function OrgGate({ children }: { children: (org: ActiveOrg, switcher: Rea
     const slug = `${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "org"}-${Math.random().toString(36).slice(2, 6)}`;
     const { data, error } = await supabase.from("organizations").insert({ name: name.trim(), slug, created_by: u.user!.id }).select("id").single();
     setBusy(false);
-    if (error) return toast.error("Couldn't create the workspace.");
+    if (error) return void toast.error("Couldn't create the workspace.");
     orgs.choose(data.id); orgs.refresh();
   };
 

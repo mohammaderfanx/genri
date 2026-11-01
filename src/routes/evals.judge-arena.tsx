@@ -59,7 +59,7 @@ function JudgeArena() {
   const run = async () => {
     setPhase("candidate"); setOutput(null); setLanes([]); setSelected(null);
     const c = await gen({ data: { prompt, model: candidate } });
-    if (!c.ok) { setPhase("idle"); return toast.error(c.error); }
+    if (!c.ok) { setPhase("idle"); return void toast.error(c.error); }
     setOutput(c.text); setPhase("judging");
     const init: Lane[] = JUDGES.map((j) => ({ judge: j.id, state: "running" }));
     setLanes(init);

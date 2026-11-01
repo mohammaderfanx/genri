@@ -42,25 +42,25 @@ function OrgSettings({ org, switcher }: { org: ReturnType<typeof useOrgs>["activ
   const invite = async (e: React.FormEvent) => {
     e.preventDefault();
     const { error } = await supabase.from("organization_invites").insert({ org_id: org.id, email: email.trim().toLowerCase(), role });
-    if (error) return toast.error(error.code === "23505" ? "Already invited." : "Couldn't send the invite.");
+    if (error) return void toast.error(error.code === "23505" ? "Already invited." : "Couldn't send the invite.");
     await audit(org.id, "member.invited", { email, role });
     toast.success("Invite saved — they'll join when they sign in with that email."); setEmail(""); refresh();
   };
   const changeRole = async (id: string, r: OrgRole, who: string | null) => {
     const { error } = await supabase.from("organization_members").update({ role: r }).eq("id", id);
-    if (error) return toast.error("Couldn't change the role.");
+    if (error) return void toast.error("Couldn't change the role.");
     await audit(org.id, "member.role_changed", { member: who, role: r }); refresh();
   };
   const remove = async (id: string, who: string | null) => {
     const { error } = await supabase.from("organization_members").delete().eq("id", id);
-    if (error) return toast.error("Couldn't remove this member.");
+    if (error) return void toast.error("Couldn't remove this member.");
     await audit(org.id, "member.removed", { member: who }); refresh();
   };
   const saveBudget = async () => {
     const v = Number(budget);
-    if (!(v >= 0)) return toast.error("Enter a valid amount.");
+    if (!(v >= 0)) return void toast.error("Enter a valid amount.");
     const { error } = await supabase.from("organizations").update({ monthly_budget_usd: v }).eq("id", org.id);
-    if (error) return toast.error("Couldn't save the budget.");
+    if (error) return void toast.error("Couldn't save the budget.");
     await audit(org.id, "budget.updated", { monthly_budget_usd: v }); toast.success("Budget cap saved"); orgs.refresh();
   };
 

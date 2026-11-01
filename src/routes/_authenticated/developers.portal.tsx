@@ -35,12 +35,12 @@ function Portal({ orgId, manage, switcher }: { orgId: string; manage: boolean; s
 
   const onCreate = async () => {
     const r = await create({ data: { orgId, name, rpm } });
-    if (!r.ok) return toast.error(r.error);
+    if (!r.ok) return void toast.error(r.error);
     setFresh(r.secret); qc.invalidateQueries({ queryKey: ["keys", orgId] });
   };
   const revoke = async (id: string, keyName: string) => {
     const { error } = await supabase.from("api_keys").delete().eq("id", id);
-    if (error) return toast.error("Couldn't revoke the key.");
+    if (error) return void toast.error("Couldn't revoke the key.");
     await audit(orgId, "api_key.revoked", { name: keyName }); qc.invalidateQueries({ queryKey: ["keys", orgId] });
   };
 
