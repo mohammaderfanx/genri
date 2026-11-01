@@ -10,3 +10,5 @@
 <!-- LOVABLE:END -->
 
 - Demo data (models, telemetry, agentic evals) lives in src/lib as deterministic seeded modules; live fluctuations run client-side in useEffect so SSR and hydration match.
+- Public REST API lives under src/routes/api/public/v1 and authenticates with hashed org API keys (api-auth.server.ts); per-key rpm limits are counted from api_request_logs.
+- AI calls go through src/lib/ai/gateway.server.ts (streamed Responses API); the judge/candidate model allow-list is src/lib/ai/catalog.ts.
