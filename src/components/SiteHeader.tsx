@@ -19,6 +19,10 @@ const links = [
   { to: "/developers/portal", label: "API Portal", icon: Terminal },
   { to: "/settings/organization", label: "Workspace", icon: Building2 },
   { to: "/developer", label: "Code Export", icon: KeyRound },
+  { to: "/labs/optimizer", label: "Optimizer", icon: FlaskConical },
+  { to: "/sandboxes/live", label: "Sandboxes", icon: Bot },
+  { to: "/developers/cli", label: "CI / CLI", icon: Terminal },
+  { to: "/analytics/fine-tunes", label: "Fine-tunes", icon: GitCompare },
 ] as const;
 
 export function SiteHeader() {
