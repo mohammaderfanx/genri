@@ -17,10 +17,14 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DeveloperRouteImport } from './routes/developer'
 import { Route as RouterCalculatorRouteImport } from './routes/router-calculator'
 import { Route as StatusRouteImport } from './routes/status'
+import { Route as AnalyticsFineTunesRouteImport } from './routes/analytics_.fine-tunes'
 import { Route as BenchmarksCustomRouteImport } from './routes/benchmarks.custom'
+import { Route as DevelopersCliRouteImport } from './routes/developers.cli'
 import { Route as EvalsAgenticRouteImport } from './routes/evals.agentic'
 import { Route as EvalsJudgeArenaRouteImport } from './routes/evals.judge-arena'
+import { Route as LabsOptimizerRouteImport } from './routes/labs.optimizer'
 import { Route as ModelsSlugRouteImport } from './routes/models.$slug'
+import { Route as SandboxesLiveRouteImport } from './routes/sandboxes.live'
 import { Route as SearchSemanticRouteImport } from './routes/search.semantic'
 import { Route as AuthenticatedDevelopersPortalRouteImport } from './routes/_authenticated/developers.portal'
 import { Route as AuthenticatedSettingsOrganizationRouteImport } from './routes/_authenticated/settings.organization'
@@ -67,9 +71,19 @@ const StatusRoute = StatusRouteImport.update({
   path: '/status',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnalyticsFineTunesRoute = AnalyticsFineTunesRouteImport.update({
+  id: '/analytics_/fine-tunes',
+  path: '/analytics/fine-tunes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BenchmarksCustomRoute = BenchmarksCustomRouteImport.update({
   id: '/benchmarks/custom',
   path: '/benchmarks/custom',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DevelopersCliRoute = DevelopersCliRouteImport.update({
+  id: '/developers/cli',
+  path: '/developers/cli',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EvalsAgenticRoute = EvalsAgenticRouteImport.update({
@@ -82,9 +96,19 @@ const EvalsJudgeArenaRoute = EvalsJudgeArenaRouteImport.update({
   path: '/evals/judge-arena',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LabsOptimizerRoute = LabsOptimizerRouteImport.update({
+  id: '/labs/optimizer',
+  path: '/labs/optimizer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ModelsSlugRoute = ModelsSlugRouteImport.update({
   id: '/models/$slug',
   path: '/models/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SandboxesLiveRoute = SandboxesLiveRouteImport.update({
+  id: '/sandboxes/live',
+  path: '/sandboxes/live',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SearchSemanticRoute = SearchSemanticRouteImport.update({
@@ -129,10 +153,14 @@ export interface FileRoutesByFullPath {
   '/developer': typeof DeveloperRoute
   '/router-calculator': typeof RouterCalculatorRoute
   '/status': typeof StatusRoute
+  '/analytics/fine-tunes': typeof AnalyticsFineTunesRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
+  '/labs/optimizer': typeof LabsOptimizerRoute
   '/models/$slug': typeof ModelsSlugRoute
+  '/sandboxes/live': typeof SandboxesLiveRoute
   '/search/semantic': typeof SearchSemanticRoute
   '/api/public/v1': typeof ApiPublicV1RouteRouteWithChildren
   '/developers/portal': typeof AuthenticatedDevelopersPortalRoute
@@ -148,10 +176,14 @@ export interface FileRoutesByTo {
   '/developer': typeof DeveloperRoute
   '/router-calculator': typeof RouterCalculatorRoute
   '/status': typeof StatusRoute
+  '/analytics/fine-tunes': typeof AnalyticsFineTunesRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
+  '/labs/optimizer': typeof LabsOptimizerRoute
   '/models/$slug': typeof ModelsSlugRoute
+  '/sandboxes/live': typeof SandboxesLiveRoute
   '/search/semantic': typeof SearchSemanticRoute
   '/api/public/v1': typeof ApiPublicV1RouteRouteWithChildren
   '/developers/portal': typeof AuthenticatedDevelopersPortalRoute
@@ -169,10 +201,14 @@ export interface FileRoutesById {
   '/developer': typeof DeveloperRoute
   '/router-calculator': typeof RouterCalculatorRoute
   '/status': typeof StatusRoute
+  '/analytics_/fine-tunes': typeof AnalyticsFineTunesRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
+  '/labs/optimizer': typeof LabsOptimizerRoute
   '/models/$slug': typeof ModelsSlugRoute
+  '/sandboxes/live': typeof SandboxesLiveRoute
   '/search/semantic': typeof SearchSemanticRoute
   '/api/public/v1': typeof ApiPublicV1RouteRouteWithChildren
   '/_authenticated/developers/portal': typeof AuthenticatedDevelopersPortalRoute
@@ -190,10 +226,14 @@ export interface FileRouteTypes {
     | '/developer'
     | '/router-calculator'
     | '/status'
+    | '/analytics/fine-tunes'
     | '/benchmarks/custom'
+    | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
+    | '/labs/optimizer'
     | '/models/$slug'
+    | '/sandboxes/live'
     | '/search/semantic'
     | '/api/public/v1'
     | '/developers/portal'
@@ -209,10 +249,14 @@ export interface FileRouteTypes {
     | '/developer'
     | '/router-calculator'
     | '/status'
+    | '/analytics/fine-tunes'
     | '/benchmarks/custom'
+    | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
+    | '/labs/optimizer'
     | '/models/$slug'
+    | '/sandboxes/live'
     | '/search/semantic'
     | '/api/public/v1'
     | '/developers/portal'
@@ -229,10 +273,14 @@ export interface FileRouteTypes {
     | '/developer'
     | '/router-calculator'
     | '/status'
+    | '/analytics_/fine-tunes'
     | '/benchmarks/custom'
+    | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
+    | '/labs/optimizer'
     | '/models/$slug'
+    | '/sandboxes/live'
     | '/search/semantic'
     | '/api/public/v1'
     | '/_authenticated/developers/portal'
@@ -250,10 +298,14 @@ export interface RootRouteChildren {
   DeveloperRoute: typeof DeveloperRoute
   RouterCalculatorRoute: typeof RouterCalculatorRoute
   StatusRoute: typeof StatusRoute
+  AnalyticsFineTunesRoute: typeof AnalyticsFineTunesRoute
   BenchmarksCustomRoute: typeof BenchmarksCustomRoute
+  DevelopersCliRoute: typeof DevelopersCliRoute
   EvalsAgenticRoute: typeof EvalsAgenticRoute
   EvalsJudgeArenaRoute: typeof EvalsJudgeArenaRoute
+  LabsOptimizerRoute: typeof LabsOptimizerRoute
   ModelsSlugRoute: typeof ModelsSlugRoute
+  SandboxesLiveRoute: typeof SandboxesLiveRoute
   SearchSemanticRoute: typeof SearchSemanticRoute
   ApiPublicV1RouteRoute: typeof ApiPublicV1RouteRouteWithChildren
 }
@@ -316,11 +368,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StatusRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/analytics_/fine-tunes': {
+      id: '/analytics_/fine-tunes'
+      path: '/analytics/fine-tunes'
+      fullPath: '/analytics/fine-tunes'
+      preLoaderRoute: typeof AnalyticsFineTunesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/benchmarks/custom': {
       id: '/benchmarks/custom'
       path: '/benchmarks/custom'
       fullPath: '/benchmarks/custom'
       preLoaderRoute: typeof BenchmarksCustomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/developers/cli': {
+      id: '/developers/cli'
+      path: '/developers/cli'
+      fullPath: '/developers/cli'
+      preLoaderRoute: typeof DevelopersCliRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/evals/agentic': {
@@ -337,11 +403,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EvalsJudgeArenaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/labs/optimizer': {
+      id: '/labs/optimizer'
+      path: '/labs/optimizer'
+      fullPath: '/labs/optimizer'
+      preLoaderRoute: typeof LabsOptimizerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/models/$slug': {
       id: '/models/$slug'
       path: '/models/$slug'
       fullPath: '/models/$slug'
       preLoaderRoute: typeof ModelsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sandboxes/live': {
+      id: '/sandboxes/live'
+      path: '/sandboxes/live'
+      fullPath: '/sandboxes/live'
+      preLoaderRoute: typeof SandboxesLiveRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/search/semantic': {
@@ -425,10 +505,14 @@ const rootRouteChildren: RootRouteChildren = {
   DeveloperRoute: DeveloperRoute,
   RouterCalculatorRoute: RouterCalculatorRoute,
   StatusRoute: StatusRoute,
+  AnalyticsFineTunesRoute: AnalyticsFineTunesRoute,
   BenchmarksCustomRoute: BenchmarksCustomRoute,
+  DevelopersCliRoute: DevelopersCliRoute,
   EvalsAgenticRoute: EvalsAgenticRoute,
   EvalsJudgeArenaRoute: EvalsJudgeArenaRoute,
+  LabsOptimizerRoute: LabsOptimizerRoute,
   ModelsSlugRoute: ModelsSlugRoute,
+  SandboxesLiveRoute: SandboxesLiveRoute,
   SearchSemanticRoute: SearchSemanticRoute,
   ApiPublicV1RouteRoute: ApiPublicV1RouteRouteWithChildren,
 }
