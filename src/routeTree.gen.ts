@@ -17,7 +17,9 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DeveloperRouteImport } from './routes/developer'
 import { Route as RouterCalculatorRouteImport } from './routes/router-calculator'
 import { Route as StatusRouteImport } from './routes/status'
+import { Route as AnalyticsFineTunesRouteImport } from './routes/analytics_.fine-tunes'
 import { Route as BenchmarksCustomRouteImport } from './routes/benchmarks.custom'
+import { Route as DevelopersCliRouteImport } from './routes/developers.cli'
 import { Route as EvalsAgenticRouteImport } from './routes/evals.agentic'
 import { Route as EvalsJudgeArenaRouteImport } from './routes/evals.judge-arena'
 import { Route as LabsOptimizerRouteImport } from './routes/labs.optimizer'
@@ -69,9 +71,19 @@ const StatusRoute = StatusRouteImport.update({
   path: '/status',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnalyticsFineTunesRoute = AnalyticsFineTunesRouteImport.update({
+  id: '/analytics_/fine-tunes',
+  path: '/analytics/fine-tunes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BenchmarksCustomRoute = BenchmarksCustomRouteImport.update({
   id: '/benchmarks/custom',
   path: '/benchmarks/custom',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DevelopersCliRoute = DevelopersCliRouteImport.update({
+  id: '/developers/cli',
+  path: '/developers/cli',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EvalsAgenticRoute = EvalsAgenticRouteImport.update({
@@ -141,7 +153,9 @@ export interface FileRoutesByFullPath {
   '/developer': typeof DeveloperRoute
   '/router-calculator': typeof RouterCalculatorRoute
   '/status': typeof StatusRoute
+  '/analytics/fine-tunes': typeof AnalyticsFineTunesRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
@@ -162,7 +176,9 @@ export interface FileRoutesByTo {
   '/developer': typeof DeveloperRoute
   '/router-calculator': typeof RouterCalculatorRoute
   '/status': typeof StatusRoute
+  '/analytics/fine-tunes': typeof AnalyticsFineTunesRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
@@ -185,7 +201,9 @@ export interface FileRoutesById {
   '/developer': typeof DeveloperRoute
   '/router-calculator': typeof RouterCalculatorRoute
   '/status': typeof StatusRoute
+  '/analytics_/fine-tunes': typeof AnalyticsFineTunesRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
@@ -208,7 +226,9 @@ export interface FileRouteTypes {
     | '/developer'
     | '/router-calculator'
     | '/status'
+    | '/analytics/fine-tunes'
     | '/benchmarks/custom'
+    | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
     | '/labs/optimizer'
@@ -229,7 +249,9 @@ export interface FileRouteTypes {
     | '/developer'
     | '/router-calculator'
     | '/status'
+    | '/analytics/fine-tunes'
     | '/benchmarks/custom'
+    | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
     | '/labs/optimizer'
@@ -251,7 +273,9 @@ export interface FileRouteTypes {
     | '/developer'
     | '/router-calculator'
     | '/status'
+    | '/analytics_/fine-tunes'
     | '/benchmarks/custom'
+    | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
     | '/labs/optimizer'
@@ -274,7 +298,9 @@ export interface RootRouteChildren {
   DeveloperRoute: typeof DeveloperRoute
   RouterCalculatorRoute: typeof RouterCalculatorRoute
   StatusRoute: typeof StatusRoute
+  AnalyticsFineTunesRoute: typeof AnalyticsFineTunesRoute
   BenchmarksCustomRoute: typeof BenchmarksCustomRoute
+  DevelopersCliRoute: typeof DevelopersCliRoute
   EvalsAgenticRoute: typeof EvalsAgenticRoute
   EvalsJudgeArenaRoute: typeof EvalsJudgeArenaRoute
   LabsOptimizerRoute: typeof LabsOptimizerRoute
@@ -342,11 +368,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StatusRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/analytics_/fine-tunes': {
+      id: '/analytics_/fine-tunes'
+      path: '/analytics/fine-tunes'
+      fullPath: '/analytics/fine-tunes'
+      preLoaderRoute: typeof AnalyticsFineTunesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/benchmarks/custom': {
       id: '/benchmarks/custom'
       path: '/benchmarks/custom'
       fullPath: '/benchmarks/custom'
       preLoaderRoute: typeof BenchmarksCustomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/developers/cli': {
+      id: '/developers/cli'
+      path: '/developers/cli'
+      fullPath: '/developers/cli'
+      preLoaderRoute: typeof DevelopersCliRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/evals/agentic': {
@@ -465,7 +505,9 @@ const rootRouteChildren: RootRouteChildren = {
   DeveloperRoute: DeveloperRoute,
   RouterCalculatorRoute: RouterCalculatorRoute,
   StatusRoute: StatusRoute,
+  AnalyticsFineTunesRoute: AnalyticsFineTunesRoute,
   BenchmarksCustomRoute: BenchmarksCustomRoute,
+  DevelopersCliRoute: DevelopersCliRoute,
   EvalsAgenticRoute: EvalsAgenticRoute,
   EvalsJudgeArenaRoute: EvalsJudgeArenaRoute,
   LabsOptimizerRoute: LabsOptimizerRoute,
