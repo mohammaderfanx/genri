@@ -3,9 +3,12 @@
 - [x] Phase 2: ticker, ⌘K actions, radar overlay, status, router, agentic, custom evals, code export
 - [x] Phase 3 build: sign-in, workspaces/roles/budget/audit log, API keys + public API (models, route, live SSE), smart search, judge arena, live benchmark jobs, exports
 - [ ] Phase 3 end-to-end check signed in (blocked: hosted database is paused — needs user to resume)
-- [ ] Phase 4: optimizer with diff and templates
-- [ ] Phase 4: five sandbox replays with telemetry
-- [ ] Phase 4: runnable CLI, CI history and SDK examples
-- [ ] Phase 4: fine-tune comparison and report import
-- [ ] Phase 4: persistence and live execution where services are available
-- [ ] Phase 4: tests and browser verification
+- [x] Phase 4: local optimizer with diff and ten templates; auto-tuner simulation
+- [x] Phase 4: five sandbox replays with sample telemetry and browser reconstructions
+- [x] Phase 4: runnable captured-output CLI, sample CI history and API wrapper examples
+- [x] Phase 4: fine-tune comparison and report import
+- [ ] Phase 4: schema, persistence and signed-in checks (blocked: hosted database paused)
+- [ ] Phase 4: autonomous AI optimization, quality judging and live container execution (blocked: persistence paused and sandbox service not connected)
+- [ ] Phase 4: repository CI checks, registry CLI/SDK releases and weight serving (blocked: external repository, registry and compute access required)
+- [ ] Phase 4: local WebGPU inference (blocked: compatible model/runtime assets not supplied)
+- [x] Phase 4: tests and browser verification of implemented local/demo flows
