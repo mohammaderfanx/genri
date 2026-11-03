@@ -22,6 +22,8 @@ import { Route as BenchmarksCustomRouteImport } from './routes/benchmarks.custom
 import { Route as DevelopersCliRouteImport } from './routes/developers.cli'
 import { Route as EvalsAgenticRouteImport } from './routes/evals.agentic'
 import { Route as EvalsJudgeArenaRouteImport } from './routes/evals.judge-arena'
+import { Route as EvalsSynthesizerRouteImport } from './routes/evals.synthesizer'
+import { Route as HardwareProfilerRouteImport } from './routes/hardware.profiler'
 import { Route as LabsOptimizerRouteImport } from './routes/labs.optimizer'
 import { Route as ModelsSlugRouteImport } from './routes/models.$slug'
 import { Route as SandboxesLiveRouteImport } from './routes/sandboxes.live'
@@ -96,6 +98,16 @@ const EvalsJudgeArenaRoute = EvalsJudgeArenaRouteImport.update({
   path: '/evals/judge-arena',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EvalsSynthesizerRoute = EvalsSynthesizerRouteImport.update({
+  id: '/evals/synthesizer',
+  path: '/evals/synthesizer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HardwareProfilerRoute = HardwareProfilerRouteImport.update({
+  id: '/hardware/profiler',
+  path: '/hardware/profiler',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LabsOptimizerRoute = LabsOptimizerRouteImport.update({
   id: '/labs/optimizer',
   path: '/labs/optimizer',
@@ -158,6 +170,8 @@ export interface FileRoutesByFullPath {
   '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
+  '/evals/synthesizer': typeof EvalsSynthesizerRoute
+  '/hardware/profiler': typeof HardwareProfilerRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
   '/models/$slug': typeof ModelsSlugRoute
   '/sandboxes/live': typeof SandboxesLiveRoute
@@ -181,6 +195,8 @@ export interface FileRoutesByTo {
   '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
+  '/evals/synthesizer': typeof EvalsSynthesizerRoute
+  '/hardware/profiler': typeof HardwareProfilerRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
   '/models/$slug': typeof ModelsSlugRoute
   '/sandboxes/live': typeof SandboxesLiveRoute
@@ -206,6 +222,8 @@ export interface FileRoutesById {
   '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
+  '/evals/synthesizer': typeof EvalsSynthesizerRoute
+  '/hardware/profiler': typeof HardwareProfilerRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
   '/models/$slug': typeof ModelsSlugRoute
   '/sandboxes/live': typeof SandboxesLiveRoute
@@ -231,6 +249,8 @@ export interface FileRouteTypes {
     | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
+    | '/evals/synthesizer'
+    | '/hardware/profiler'
     | '/labs/optimizer'
     | '/models/$slug'
     | '/sandboxes/live'
@@ -254,6 +274,8 @@ export interface FileRouteTypes {
     | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
+    | '/evals/synthesizer'
+    | '/hardware/profiler'
     | '/labs/optimizer'
     | '/models/$slug'
     | '/sandboxes/live'
@@ -278,6 +300,8 @@ export interface FileRouteTypes {
     | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
+    | '/evals/synthesizer'
+    | '/hardware/profiler'
     | '/labs/optimizer'
     | '/models/$slug'
     | '/sandboxes/live'
@@ -303,6 +327,8 @@ export interface RootRouteChildren {
   DevelopersCliRoute: typeof DevelopersCliRoute
   EvalsAgenticRoute: typeof EvalsAgenticRoute
   EvalsJudgeArenaRoute: typeof EvalsJudgeArenaRoute
+  EvalsSynthesizerRoute: typeof EvalsSynthesizerRoute
+  HardwareProfilerRoute: typeof HardwareProfilerRoute
   LabsOptimizerRoute: typeof LabsOptimizerRoute
   ModelsSlugRoute: typeof ModelsSlugRoute
   SandboxesLiveRoute: typeof SandboxesLiveRoute
@@ -401,6 +427,20 @@ declare module '@tanstack/react-router' {
       path: '/evals/judge-arena'
       fullPath: '/evals/judge-arena'
       preLoaderRoute: typeof EvalsJudgeArenaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evals/synthesizer': {
+      id: '/evals/synthesizer'
+      path: '/evals/synthesizer'
+      fullPath: '/evals/synthesizer'
+      preLoaderRoute: typeof EvalsSynthesizerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hardware/profiler': {
+      id: '/hardware/profiler'
+      path: '/hardware/profiler'
+      fullPath: '/hardware/profiler'
+      preLoaderRoute: typeof HardwareProfilerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/labs/optimizer': {
@@ -510,6 +550,8 @@ const rootRouteChildren: RootRouteChildren = {
   DevelopersCliRoute: DevelopersCliRoute,
   EvalsAgenticRoute: EvalsAgenticRoute,
   EvalsJudgeArenaRoute: EvalsJudgeArenaRoute,
+  EvalsSynthesizerRoute: EvalsSynthesizerRoute,
+  HardwareProfilerRoute: HardwareProfilerRoute,
   LabsOptimizerRoute: LabsOptimizerRoute,
   ModelsSlugRoute: ModelsSlugRoute,
   SandboxesLiveRoute: SandboxesLiveRoute,
