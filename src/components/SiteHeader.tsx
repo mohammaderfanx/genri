@@ -46,7 +46,7 @@ export function SiteHeader() {
           <span className="grid h-7 w-7 place-items-center rounded-md bg-gradient-signal font-mono text-sm font-bold text-primary-foreground">G</span>
           Genri<span className="text-primary">AI</span>
         </Link>
-        <button onClick={() => setOpen(true)} className="flex flex-1 items-center gap-2 rounded-md border bg-panel px-3 py-1.5 text-sm text-muted-foreground md:max-w-sm">
+        <button onClick={() => setOpen(true)} className="flex min-w-0 flex-1 items-center gap-2 rounded-md border bg-panel px-3 py-1.5 text-sm text-muted-foreground md:max-w-sm">
           <Search className="h-4 w-4" /><span className="truncate">Search or run a command…</span>
           <kbd className="ml-auto hidden rounded border px-1.5 font-mono text-[10px] sm:inline">⌘K</kbd>
         </button>
