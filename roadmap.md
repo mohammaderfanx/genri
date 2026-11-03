@@ -1,4 +1,7 @@
 # Roadmap
+- [ ] Phase 5: synthesizer, hardware profiler, red-team replay and 128-node mesh visualization
+- [ ] Phase 5: private report storage, signed-in checks and local probe tooling
+- [ ] Phase 5: autonomous AI synthesis, live guardrail execution, verified global probing and WASM parsing (requires live execution integrations)
 - [x] Phase 1: store, benchmarks, arena, model pages
 - [x] Phase 2: ticker, ⌘K actions, radar overlay, status, router, agentic, custom evals, code export
 - [x] Phase 3 build: sign-in, workspaces/roles/budget/audit log, API keys + public API (models, route, live SSE), smart search, judge arena, live benchmark jobs, exports
