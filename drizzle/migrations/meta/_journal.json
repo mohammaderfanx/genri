@@ -8,6 +8,13 @@
       "when": 1791441674961,
       "tag": "0000_phase3_platform",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793694669883,
+      "tag": "0001_phase5_private_labs",
+      "breakpoints": true
     }
   ]
 }

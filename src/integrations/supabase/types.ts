@@ -189,6 +189,51 @@ export type Database = {
         }
         Relationships: []
       }
+      hardware_telemetry_profiles: {
+        Row: {
+          created_at: string
+          created_by: string
+          energy_efficiency_tok_per_joule: number
+          host_provider: string
+          id: string
+          inter_gpu_interconnect_latency_us: number | null
+          kv_cache_hit_ratio: number | null
+          memory_bandwidth_gbps: number
+          model_id: string
+          quantization_level: Database["public"]["Enums"]["quantization_level"]
+          report: Json
+          source: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string
+          energy_efficiency_tok_per_joule: number
+          host_provider: string
+          id?: string
+          inter_gpu_interconnect_latency_us?: number | null
+          kv_cache_hit_ratio?: number | null
+          memory_bandwidth_gbps: number
+          model_id: string
+          quantization_level: Database["public"]["Enums"]["quantization_level"]
+          report?: Json
+          source?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          energy_efficiency_tok_per_joule?: number
+          host_provider?: string
+          id?: string
+          inter_gpu_interconnect_latency_us?: number | null
+          kv_cache_hit_ratio?: number | null
+          memory_bandwidth_gbps?: number
+          model_id?: string
+          quantization_level?: Database["public"]["Enums"]["quantization_level"]
+          report?: Json
+          source?: string
+        }
+        Relationships: []
+      }
       model_embeddings: {
         Row: {
           capability_vector: string
@@ -352,6 +397,84 @@ export type Database = {
         }
         Relationships: []
       }
+      security_redteam_scans: {
+        Row: {
+          attack_payload_samples: Json
+          attack_vector: Database["public"]["Enums"]["redteam_vector"]
+          created_at: string
+          created_by: string
+          id: string
+          model_id: string
+          report: Json
+          safety_guardrail_latency_overhead_ms: number
+          source: string
+          success_rate_pct: number
+        }
+        Insert: {
+          attack_payload_samples?: Json
+          attack_vector: Database["public"]["Enums"]["redteam_vector"]
+          created_at?: string
+          created_by?: string
+          id?: string
+          model_id: string
+          report?: Json
+          safety_guardrail_latency_overhead_ms: number
+          source?: string
+          success_rate_pct: number
+        }
+        Update: {
+          attack_payload_samples?: Json
+          attack_vector?: Database["public"]["Enums"]["redteam_vector"]
+          created_at?: string
+          created_by?: string
+          id?: string
+          model_id?: string
+          report?: Json
+          safety_guardrail_latency_overhead_ms?: number
+          source?: string
+          success_rate_pct?: number
+        }
+        Relationships: []
+      }
+      synthetic_benchmark_suites: {
+        Row: {
+          contamination_risk_score: number | null
+          created_at: string
+          created_by: string
+          difficulty_rating: number
+          generator_model_id: string | null
+          id: string
+          name: string
+          report: Json
+          source: string
+          target_domain: Database["public"]["Enums"]["synthesis_domain"]
+        }
+        Insert: {
+          contamination_risk_score?: number | null
+          created_at?: string
+          created_by?: string
+          difficulty_rating?: number
+          generator_model_id?: string | null
+          id?: string
+          name: string
+          report?: Json
+          source?: string
+          target_domain: Database["public"]["Enums"]["synthesis_domain"]
+        }
+        Update: {
+          contamination_risk_score?: number | null
+          created_at?: string
+          created_by?: string
+          difficulty_rating?: number
+          generator_model_id?: string | null
+          id?: string
+          name?: string
+          report?: Json
+          source?: string
+          target_domain?: Database["public"]["Enums"]["synthesis_domain"]
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -375,6 +498,17 @@ export type Database = {
       job_status: "queued" | "running" | "completed" | "failed"
       org_plan: "free" | "pro" | "enterprise"
       org_role: "owner" | "admin" | "evaluator" | "viewer"
+      quantization_level: "FP16" | "BF16" | "INT8" | "INT4" | "AWQ" | "GGUF_Q4"
+      redteam_vector:
+        | "Prompt Injection"
+        | "System Prompt Leak"
+        | "Jailbreak Bypass"
+        | "Hallucinated Package Exploitation"
+      synthesis_domain:
+        | "Quantum Computing"
+        | "Distributed Consensus"
+        | "Biomedical Reasoning"
+        | "Obfuscated Code Logic"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -505,6 +639,19 @@ export const Constants = {
       job_status: ["queued", "running", "completed", "failed"],
       org_plan: ["free", "pro", "enterprise"],
       org_role: ["owner", "admin", "evaluator", "viewer"],
+      quantization_level: ["FP16", "BF16", "INT8", "INT4", "AWQ", "GGUF_Q4"],
+      redteam_vector: [
+        "Prompt Injection",
+        "System Prompt Leak",
+        "Jailbreak Bypass",
+        "Hallucinated Package Exploitation",
+      ],
+      synthesis_domain: [
+        "Quantum Computing",
+        "Distributed Consensus",
+        "Biomedical Reasoning",
+        "Obfuscated Code Logic",
+      ],
     },
   },
 } as const

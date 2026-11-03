@@ -22,10 +22,14 @@ import { Route as BenchmarksCustomRouteImport } from './routes/benchmarks.custom
 import { Route as DevelopersCliRouteImport } from './routes/developers.cli'
 import { Route as EvalsAgenticRouteImport } from './routes/evals.agentic'
 import { Route as EvalsJudgeArenaRouteImport } from './routes/evals.judge-arena'
+import { Route as EvalsSynthesizerRouteImport } from './routes/evals.synthesizer'
+import { Route as HardwareProfilerRouteImport } from './routes/hardware.profiler'
 import { Route as LabsOptimizerRouteImport } from './routes/labs.optimizer'
+import { Route as MeshNodesRouteImport } from './routes/mesh.nodes'
 import { Route as ModelsSlugRouteImport } from './routes/models.$slug'
 import { Route as SandboxesLiveRouteImport } from './routes/sandboxes.live'
 import { Route as SearchSemanticRouteImport } from './routes/search.semantic'
+import { Route as SecurityRedteamRouteImport } from './routes/security.redteam'
 import { Route as AuthenticatedDevelopersPortalRouteImport } from './routes/_authenticated/developers.portal'
 import { Route as AuthenticatedSettingsOrganizationRouteImport } from './routes/_authenticated/settings.organization'
 import { Route as ApiPublicV1RouteRouteImport } from './routes/api/public/v1/route'
@@ -96,9 +100,24 @@ const EvalsJudgeArenaRoute = EvalsJudgeArenaRouteImport.update({
   path: '/evals/judge-arena',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EvalsSynthesizerRoute = EvalsSynthesizerRouteImport.update({
+  id: '/evals/synthesizer',
+  path: '/evals/synthesizer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HardwareProfilerRoute = HardwareProfilerRouteImport.update({
+  id: '/hardware/profiler',
+  path: '/hardware/profiler',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LabsOptimizerRoute = LabsOptimizerRouteImport.update({
   id: '/labs/optimizer',
   path: '/labs/optimizer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeshNodesRoute = MeshNodesRouteImport.update({
+  id: '/mesh/nodes',
+  path: '/mesh/nodes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ModelsSlugRoute = ModelsSlugRouteImport.update({
@@ -114,6 +133,11 @@ const SandboxesLiveRoute = SandboxesLiveRouteImport.update({
 const SearchSemanticRoute = SearchSemanticRouteImport.update({
   id: '/search/semantic',
   path: '/search/semantic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityRedteamRoute = SecurityRedteamRouteImport.update({
+  id: '/security/redteam',
+  path: '/security/redteam',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedDevelopersPortalRoute =
@@ -158,10 +182,14 @@ export interface FileRoutesByFullPath {
   '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
+  '/evals/synthesizer': typeof EvalsSynthesizerRoute
+  '/hardware/profiler': typeof HardwareProfilerRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
+  '/mesh/nodes': typeof MeshNodesRoute
   '/models/$slug': typeof ModelsSlugRoute
   '/sandboxes/live': typeof SandboxesLiveRoute
   '/search/semantic': typeof SearchSemanticRoute
+  '/security/redteam': typeof SecurityRedteamRoute
   '/api/public/v1': typeof ApiPublicV1RouteRouteWithChildren
   '/developers/portal': typeof AuthenticatedDevelopersPortalRoute
   '/settings/organization': typeof AuthenticatedSettingsOrganizationRoute
@@ -181,10 +209,14 @@ export interface FileRoutesByTo {
   '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
+  '/evals/synthesizer': typeof EvalsSynthesizerRoute
+  '/hardware/profiler': typeof HardwareProfilerRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
+  '/mesh/nodes': typeof MeshNodesRoute
   '/models/$slug': typeof ModelsSlugRoute
   '/sandboxes/live': typeof SandboxesLiveRoute
   '/search/semantic': typeof SearchSemanticRoute
+  '/security/redteam': typeof SecurityRedteamRoute
   '/api/public/v1': typeof ApiPublicV1RouteRouteWithChildren
   '/developers/portal': typeof AuthenticatedDevelopersPortalRoute
   '/settings/organization': typeof AuthenticatedSettingsOrganizationRoute
@@ -206,10 +238,14 @@ export interface FileRoutesById {
   '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
+  '/evals/synthesizer': typeof EvalsSynthesizerRoute
+  '/hardware/profiler': typeof HardwareProfilerRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
+  '/mesh/nodes': typeof MeshNodesRoute
   '/models/$slug': typeof ModelsSlugRoute
   '/sandboxes/live': typeof SandboxesLiveRoute
   '/search/semantic': typeof SearchSemanticRoute
+  '/security/redteam': typeof SecurityRedteamRoute
   '/api/public/v1': typeof ApiPublicV1RouteRouteWithChildren
   '/_authenticated/developers/portal': typeof AuthenticatedDevelopersPortalRoute
   '/_authenticated/settings/organization': typeof AuthenticatedSettingsOrganizationRoute
@@ -231,10 +267,14 @@ export interface FileRouteTypes {
     | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
+    | '/evals/synthesizer'
+    | '/hardware/profiler'
     | '/labs/optimizer'
+    | '/mesh/nodes'
     | '/models/$slug'
     | '/sandboxes/live'
     | '/search/semantic'
+    | '/security/redteam'
     | '/api/public/v1'
     | '/developers/portal'
     | '/settings/organization'
@@ -254,10 +294,14 @@ export interface FileRouteTypes {
     | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
+    | '/evals/synthesizer'
+    | '/hardware/profiler'
     | '/labs/optimizer'
+    | '/mesh/nodes'
     | '/models/$slug'
     | '/sandboxes/live'
     | '/search/semantic'
+    | '/security/redteam'
     | '/api/public/v1'
     | '/developers/portal'
     | '/settings/organization'
@@ -278,10 +322,14 @@ export interface FileRouteTypes {
     | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
+    | '/evals/synthesizer'
+    | '/hardware/profiler'
     | '/labs/optimizer'
+    | '/mesh/nodes'
     | '/models/$slug'
     | '/sandboxes/live'
     | '/search/semantic'
+    | '/security/redteam'
     | '/api/public/v1'
     | '/_authenticated/developers/portal'
     | '/_authenticated/settings/organization'
@@ -303,10 +351,14 @@ export interface RootRouteChildren {
   DevelopersCliRoute: typeof DevelopersCliRoute
   EvalsAgenticRoute: typeof EvalsAgenticRoute
   EvalsJudgeArenaRoute: typeof EvalsJudgeArenaRoute
+  EvalsSynthesizerRoute: typeof EvalsSynthesizerRoute
+  HardwareProfilerRoute: typeof HardwareProfilerRoute
   LabsOptimizerRoute: typeof LabsOptimizerRoute
+  MeshNodesRoute: typeof MeshNodesRoute
   ModelsSlugRoute: typeof ModelsSlugRoute
   SandboxesLiveRoute: typeof SandboxesLiveRoute
   SearchSemanticRoute: typeof SearchSemanticRoute
+  SecurityRedteamRoute: typeof SecurityRedteamRoute
   ApiPublicV1RouteRoute: typeof ApiPublicV1RouteRouteWithChildren
 }
 
@@ -403,11 +455,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EvalsJudgeArenaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/evals/synthesizer': {
+      id: '/evals/synthesizer'
+      path: '/evals/synthesizer'
+      fullPath: '/evals/synthesizer'
+      preLoaderRoute: typeof EvalsSynthesizerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hardware/profiler': {
+      id: '/hardware/profiler'
+      path: '/hardware/profiler'
+      fullPath: '/hardware/profiler'
+      preLoaderRoute: typeof HardwareProfilerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/labs/optimizer': {
       id: '/labs/optimizer'
       path: '/labs/optimizer'
       fullPath: '/labs/optimizer'
       preLoaderRoute: typeof LabsOptimizerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mesh/nodes': {
+      id: '/mesh/nodes'
+      path: '/mesh/nodes'
+      fullPath: '/mesh/nodes'
+      preLoaderRoute: typeof MeshNodesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/models/$slug': {
@@ -429,6 +502,13 @@ declare module '@tanstack/react-router' {
       path: '/search/semantic'
       fullPath: '/search/semantic'
       preLoaderRoute: typeof SearchSemanticRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/security/redteam': {
+      id: '/security/redteam'
+      path: '/security/redteam'
+      fullPath: '/security/redteam'
+      preLoaderRoute: typeof SecurityRedteamRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/developers/portal': {
@@ -510,10 +590,14 @@ const rootRouteChildren: RootRouteChildren = {
   DevelopersCliRoute: DevelopersCliRoute,
   EvalsAgenticRoute: EvalsAgenticRoute,
   EvalsJudgeArenaRoute: EvalsJudgeArenaRoute,
+  EvalsSynthesizerRoute: EvalsSynthesizerRoute,
+  HardwareProfilerRoute: HardwareProfilerRoute,
   LabsOptimizerRoute: LabsOptimizerRoute,
+  MeshNodesRoute: MeshNodesRoute,
   ModelsSlugRoute: ModelsSlugRoute,
   SandboxesLiveRoute: SandboxesLiveRoute,
   SearchSemanticRoute: SearchSemanticRoute,
+  SecurityRedteamRoute: SecurityRedteamRoute,
   ApiPublicV1RouteRoute: ApiPublicV1RouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
