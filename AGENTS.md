@@ -16,3 +16,6 @@
 - Prompt tokenization and exact-line deduplication run in a client worker to avoid blocking interaction or loading tokenizer assets during SSR.
 - Fine-tune analytics uses an unnested route so the existing analytics content page does not swallow its child.
 - The downloadable local CLI validates captured outputs and regression budgets outside the hosted runtime; keep its runnable core alongside the entry point and do not imply unpublished registry packages exist.
+- Phase 5 datasets and topology are deterministic client-safe data; local templates and sample scans must never be described as autonomous execution or contamination evidence.
+- Phase 5 report persistence uses authenticated server functions and owner-only policies; regenerate sample reports server-side rather than trusting client-supplied metrics.
+- The Phase 5 topology uses a responsive Canvas renderer with token-derived colors; node selection must also work through the registry for keyboard access.

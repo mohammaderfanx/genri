@@ -1,17 +1,19 @@
 # Roadmap
-- [ ] Phase 5: synthesizer, hardware profiler, red-team replay and 128-node mesh visualization
-- [ ] Phase 5: private report storage, signed-in checks and local probe tooling
-- [ ] Phase 5: autonomous AI synthesis, live guardrail execution, verified global probing and WASM parsing (requires live execution integrations)
+- [x] Phase 5: local template synthesizer, sample hardware profiler, red-team replay and 128-node Canvas mesh
+- [x] Phase 5: private report storage, signed-in save/read-back checks and local HTTP probe capture
+- [ ] Phase 5: autonomous AI synthesis and contamination analysis (not implemented; requires a validated generation pipeline and corpus/probability evidence)
+- [ ] Phase 5: live hardware/guardrail execution, verified challenge-response probing, published node package and WASM parsing (not implemented; requires execution integrations and node service)
 - [x] Phase 1: store, benchmarks, arena, model pages
 - [x] Phase 2: ticker, ⌘K actions, radar overlay, status, router, agentic, custom evals, code export
 - [x] Phase 3 build: sign-in, workspaces/roles/budget/audit log, API keys + public API (models, route, live SSE), smart search, judge arena, live benchmark jobs, exports
-- [ ] Phase 3 end-to-end check signed in (blocked: hosted database is paused — needs user to resume)
+- [ ] Phase 3 end-to-end check signed in (database healthy again; earlier Phase 3 flows still unverified)
 - [x] Phase 4: local optimizer with diff and ten templates; auto-tuner simulation
 - [x] Phase 4: five sandbox replays with sample telemetry and browser reconstructions
 - [x] Phase 4: runnable captured-output CLI, sample CI history and API wrapper examples
 - [x] Phase 4: fine-tune comparison and report import
-- [ ] Phase 4: schema, persistence and signed-in checks (blocked: hosted database paused)
-- [ ] Phase 4: autonomous AI optimization, quality judging and live container execution (blocked: persistence paused and sandbox service not connected)
+- [ ] Phase 4: schema, persistence and signed-in checks (database healthy again; earlier Phase 4 persistence still unfinished)
+- [ ] Phase 4: autonomous AI optimization, quality judging and live container execution (not implemented; sandbox service not connected)
 - [ ] Phase 4: repository CI checks, registry CLI/SDK releases and weight serving (blocked: external repository, registry and compute access required)
 - [ ] Phase 4: local WebGPU inference (blocked: compatible model/runtime assets not supplied)
 - [x] Phase 4: tests and browser verification of implemented local/demo flows
+- [ ] Existing Phase 3 security review: public job and judge records flagged by scan; resolve intended public/private sharing before production use
