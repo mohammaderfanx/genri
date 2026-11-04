@@ -23,6 +23,10 @@ const links = [
   { to: "/sandboxes/live", label: "Sandboxes", icon: Bot },
   { to: "/developers/cli", label: "CI / CLI", icon: Terminal },
   { to: "/analytics/fine-tunes", label: "Fine-tunes", icon: GitCompare },
+  { to: "/evals/synthesizer", label: "Synthesis", icon: FlaskConical },
+  { to: "/hardware/profiler", label: "Silicon", icon: Calculator },
+  { to: "/security/redteam", label: "Red Team", icon: Gavel },
+  { to: "/mesh/nodes", label: "Edge Mesh", icon: Activity },
 ] as const;
 
 export function SiteHeader() {
