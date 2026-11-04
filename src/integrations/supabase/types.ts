@@ -14,6 +14,24 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_models: {
+        Row: {
+          id: string
+          name: string
+          source: string
+        }
+        Insert: {
+          id: string
+          name: string
+          source?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          source?: string
+        }
+        Relationships: []
+      }
       api_keys: {
         Row: {
           created_at: string
@@ -188,6 +206,69 @@ export type Database = {
           total_prompts?: number
         }
         Relationships: []
+      }
+      fine_tune_adapters: {
+        Row: {
+          adapter_name: string
+          alpha: number
+          base_model_id: string
+          created_at: string
+          eval_pass_rate_improvement: number
+          id: string
+          org_id: string
+          rank: number
+          report: Json
+          source: string
+          status: Database["public"]["Enums"]["adapter_status"]
+          target_modules: Json
+          training_cost_usd: number
+        }
+        Insert: {
+          adapter_name: string
+          alpha?: number
+          base_model_id: string
+          created_at?: string
+          eval_pass_rate_improvement?: number
+          id?: string
+          org_id: string
+          rank?: number
+          report?: Json
+          source?: string
+          status?: Database["public"]["Enums"]["adapter_status"]
+          target_modules?: Json
+          training_cost_usd?: number
+        }
+        Update: {
+          adapter_name?: string
+          alpha?: number
+          base_model_id?: string
+          created_at?: string
+          eval_pass_rate_improvement?: number
+          id?: string
+          org_id?: string
+          rank?: number
+          report?: Json
+          source?: string
+          status?: Database["public"]["Enums"]["adapter_status"]
+          target_modules?: Json
+          training_cost_usd?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fine_tune_adapters_base_model_id_fkey"
+            columns: ["base_model_id"]
+            isOneToOne: false
+            referencedRelation: "ai_models"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fine_tune_adapters_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       hardware_telemetry_profiles: {
         Row: {
@@ -436,6 +517,127 @@ export type Database = {
         }
         Relationships: []
       }
+      sovereignty_compliance_audits: {
+        Row: {
+          audit_signature_hash: string | null
+          created_at: string
+          data_residency_region: string
+          id: string
+          jurisdiction: Database["public"]["Enums"]["sovereign_jurisdiction"]
+          last_inspected_at: string | null
+          model_id: string
+          org_id: string
+          report: Json
+          source: string
+          zero_data_retention_verified: boolean
+        }
+        Insert: {
+          audit_signature_hash?: string | null
+          created_at?: string
+          data_residency_region: string
+          id?: string
+          jurisdiction: Database["public"]["Enums"]["sovereign_jurisdiction"]
+          last_inspected_at?: string | null
+          model_id: string
+          org_id: string
+          report?: Json
+          source?: string
+          zero_data_retention_verified?: boolean
+        }
+        Update: {
+          audit_signature_hash?: string | null
+          created_at?: string
+          data_residency_region?: string
+          id?: string
+          jurisdiction?: Database["public"]["Enums"]["sovereign_jurisdiction"]
+          last_inspected_at?: string | null
+          model_id?: string
+          org_id?: string
+          report?: Json
+          source?: string
+          zero_data_retention_verified?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sovereignty_compliance_audits_model_id_fkey"
+            columns: ["model_id"]
+            isOneToOne: false
+            referencedRelation: "ai_models"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sovereignty_compliance_audits_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      speculative_route_configs: {
+        Row: {
+          acceptance_rate_pct: number
+          config: Json
+          created_at: string
+          draft_model_id: string
+          id: string
+          is_active: boolean
+          latency_reduction_pct: number
+          org_id: string
+          shared_kv_cache_hits: number
+          source: string
+          target_model_id: string
+        }
+        Insert: {
+          acceptance_rate_pct?: number
+          config?: Json
+          created_at?: string
+          draft_model_id: string
+          id?: string
+          is_active?: boolean
+          latency_reduction_pct?: number
+          org_id: string
+          shared_kv_cache_hits?: number
+          source?: string
+          target_model_id: string
+        }
+        Update: {
+          acceptance_rate_pct?: number
+          config?: Json
+          created_at?: string
+          draft_model_id?: string
+          id?: string
+          is_active?: boolean
+          latency_reduction_pct?: number
+          org_id?: string
+          shared_kv_cache_hits?: number
+          source?: string
+          target_model_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "speculative_route_configs_draft_model_id_fkey"
+            columns: ["draft_model_id"]
+            isOneToOne: false
+            referencedRelation: "ai_models"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "speculative_route_configs_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "speculative_route_configs_target_model_id_fkey"
+            columns: ["target_model_id"]
+            isOneToOne: false
+            referencedRelation: "ai_models"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       synthetic_benchmark_suites: {
         Row: {
           contamination_risk_score: number | null
@@ -495,6 +697,7 @@ export type Database = {
       }
     }
     Enums: {
+      adapter_status: "training" | "evaluating" | "deployed_active" | "archived"
       job_status: "queued" | "running" | "completed" | "failed"
       org_plan: "free" | "pro" | "enterprise"
       org_role: "owner" | "admin" | "evaluator" | "viewer"
@@ -504,6 +707,11 @@ export type Database = {
         | "System Prompt Leak"
         | "Jailbreak Bypass"
         | "Hallucinated Package Exploitation"
+      sovereign_jurisdiction:
+        | "EU_GDPR_AI_Act"
+        | "US_HIPAA"
+        | "SG_PDPA"
+        | "Air_Gapped_OnPrem"
       synthesis_domain:
         | "Quantum Computing"
         | "Distributed Consensus"
@@ -636,6 +844,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      adapter_status: ["training", "evaluating", "deployed_active", "archived"],
       job_status: ["queued", "running", "completed", "failed"],
       org_plan: ["free", "pro", "enterprise"],
       org_role: ["owner", "admin", "evaluator", "viewer"],
@@ -645,6 +854,12 @@ export const Constants = {
         "System Prompt Leak",
         "Jailbreak Bypass",
         "Hallucinated Package Exploitation",
+      ],
+      sovereign_jurisdiction: [
+        "EU_GDPR_AI_Act",
+        "US_HIPAA",
+        "SG_PDPA",
+        "Air_Gapped_OnPrem",
       ],
       synthesis_domain: [
         "Quantum Computing",

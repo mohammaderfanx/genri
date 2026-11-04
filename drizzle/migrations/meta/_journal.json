@@ -15,6 +15,13 @@
       "when": 1793694669883,
       "tag": "0001_phase5_private_labs",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793790672015,
+      "tag": "0002_phase6_governance_grid",
+      "breakpoints": true
     }
   ]
 }
