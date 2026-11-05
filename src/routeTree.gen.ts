@@ -19,6 +19,7 @@ import { Route as RouterCalculatorRouteImport } from './routes/router-calculator
 import { Route as StatusRouteImport } from './routes/status'
 import { Route as AnalyticsFineTunesRouteImport } from './routes/analytics_.fine-tunes'
 import { Route as BenchmarksCustomRouteImport } from './routes/benchmarks.custom'
+import { Route as ComplianceSovereignRouteImport } from './routes/compliance.sovereign'
 import { Route as DevelopersCliRouteImport } from './routes/developers.cli'
 import { Route as EvalsAgenticRouteImport } from './routes/evals.agentic'
 import { Route as EvalsJudgeArenaRouteImport } from './routes/evals.judge-arena'
@@ -86,6 +87,11 @@ const AnalyticsFineTunesRoute = AnalyticsFineTunesRouteImport.update({
 const BenchmarksCustomRoute = BenchmarksCustomRouteImport.update({
   id: '/benchmarks/custom',
   path: '/benchmarks/custom',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComplianceSovereignRoute = ComplianceSovereignRouteImport.update({
+  id: '/compliance/sovereign',
+  path: '/compliance/sovereign',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DevelopersCliRoute = DevelopersCliRouteImport.update({
@@ -198,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/status': typeof StatusRoute
   '/analytics/fine-tunes': typeof AnalyticsFineTunesRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/compliance/sovereign': typeof ComplianceSovereignRoute
   '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
@@ -228,6 +235,7 @@ export interface FileRoutesByTo {
   '/status': typeof StatusRoute
   '/analytics/fine-tunes': typeof AnalyticsFineTunesRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/compliance/sovereign': typeof ComplianceSovereignRoute
   '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
@@ -260,6 +268,7 @@ export interface FileRoutesById {
   '/status': typeof StatusRoute
   '/analytics_/fine-tunes': typeof AnalyticsFineTunesRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/compliance/sovereign': typeof ComplianceSovereignRoute
   '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
@@ -292,6 +301,7 @@ export interface FileRouteTypes {
     | '/status'
     | '/analytics/fine-tunes'
     | '/benchmarks/custom'
+    | '/compliance/sovereign'
     | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
@@ -322,6 +332,7 @@ export interface FileRouteTypes {
     | '/status'
     | '/analytics/fine-tunes'
     | '/benchmarks/custom'
+    | '/compliance/sovereign'
     | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
@@ -353,6 +364,7 @@ export interface FileRouteTypes {
     | '/status'
     | '/analytics_/fine-tunes'
     | '/benchmarks/custom'
+    | '/compliance/sovereign'
     | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
@@ -385,6 +397,7 @@ export interface RootRouteChildren {
   StatusRoute: typeof StatusRoute
   AnalyticsFineTunesRoute: typeof AnalyticsFineTunesRoute
   BenchmarksCustomRoute: typeof BenchmarksCustomRoute
+  ComplianceSovereignRoute: typeof ComplianceSovereignRoute
   DevelopersCliRoute: typeof DevelopersCliRoute
   EvalsAgenticRoute: typeof EvalsAgenticRoute
   EvalsJudgeArenaRoute: typeof EvalsJudgeArenaRoute
@@ -472,6 +485,13 @@ declare module '@tanstack/react-router' {
       path: '/benchmarks/custom'
       fullPath: '/benchmarks/custom'
       preLoaderRoute: typeof BenchmarksCustomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compliance/sovereign': {
+      id: '/compliance/sovereign'
+      path: '/compliance/sovereign'
+      fullPath: '/compliance/sovereign'
+      preLoaderRoute: typeof ComplianceSovereignRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/developers/cli': {
@@ -648,6 +668,7 @@ const rootRouteChildren: RootRouteChildren = {
   StatusRoute: StatusRoute,
   AnalyticsFineTunesRoute: AnalyticsFineTunesRoute,
   BenchmarksCustomRoute: BenchmarksCustomRoute,
+  ComplianceSovereignRoute: ComplianceSovereignRoute,
   DevelopersCliRoute: DevelopersCliRoute,
   EvalsAgenticRoute: EvalsAgenticRoute,
   EvalsJudgeArenaRoute: EvalsJudgeArenaRoute,
