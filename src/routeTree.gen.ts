@@ -24,7 +24,10 @@ import { Route as EvalsAgenticRouteImport } from './routes/evals.agentic'
 import { Route as EvalsJudgeArenaRouteImport } from './routes/evals.judge-arena'
 import { Route as EvalsSynthesizerRouteImport } from './routes/evals.synthesizer'
 import { Route as HardwareProfilerRouteImport } from './routes/hardware.profiler'
+import { Route as InfrastructureSpeculativeRouteImport } from './routes/infrastructure.speculative'
+import { Route as LabsAutoFinetuneRouteImport } from './routes/labs.auto-finetune'
 import { Route as LabsOptimizerRouteImport } from './routes/labs.optimizer'
+import { Route as MarketplaceTokensRouteImport } from './routes/marketplace.tokens'
 import { Route as MeshNodesRouteImport } from './routes/mesh.nodes'
 import { Route as ModelsSlugRouteImport } from './routes/models.$slug'
 import { Route as SandboxesLiveRouteImport } from './routes/sandboxes.live'
@@ -110,9 +113,25 @@ const HardwareProfilerRoute = HardwareProfilerRouteImport.update({
   path: '/hardware/profiler',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InfrastructureSpeculativeRoute =
+  InfrastructureSpeculativeRouteImport.update({
+    id: '/infrastructure/speculative',
+    path: '/infrastructure/speculative',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LabsAutoFinetuneRoute = LabsAutoFinetuneRouteImport.update({
+  id: '/labs/auto-finetune',
+  path: '/labs/auto-finetune',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LabsOptimizerRoute = LabsOptimizerRouteImport.update({
   id: '/labs/optimizer',
   path: '/labs/optimizer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceTokensRoute = MarketplaceTokensRouteImport.update({
+  id: '/marketplace/tokens',
+  path: '/marketplace/tokens',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MeshNodesRoute = MeshNodesRouteImport.update({
@@ -184,7 +203,10 @@ export interface FileRoutesByFullPath {
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
   '/evals/synthesizer': typeof EvalsSynthesizerRoute
   '/hardware/profiler': typeof HardwareProfilerRoute
+  '/infrastructure/speculative': typeof InfrastructureSpeculativeRoute
+  '/labs/auto-finetune': typeof LabsAutoFinetuneRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
+  '/marketplace/tokens': typeof MarketplaceTokensRoute
   '/mesh/nodes': typeof MeshNodesRoute
   '/models/$slug': typeof ModelsSlugRoute
   '/sandboxes/live': typeof SandboxesLiveRoute
@@ -211,7 +233,10 @@ export interface FileRoutesByTo {
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
   '/evals/synthesizer': typeof EvalsSynthesizerRoute
   '/hardware/profiler': typeof HardwareProfilerRoute
+  '/infrastructure/speculative': typeof InfrastructureSpeculativeRoute
+  '/labs/auto-finetune': typeof LabsAutoFinetuneRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
+  '/marketplace/tokens': typeof MarketplaceTokensRoute
   '/mesh/nodes': typeof MeshNodesRoute
   '/models/$slug': typeof ModelsSlugRoute
   '/sandboxes/live': typeof SandboxesLiveRoute
@@ -240,7 +265,10 @@ export interface FileRoutesById {
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
   '/evals/synthesizer': typeof EvalsSynthesizerRoute
   '/hardware/profiler': typeof HardwareProfilerRoute
+  '/infrastructure/speculative': typeof InfrastructureSpeculativeRoute
+  '/labs/auto-finetune': typeof LabsAutoFinetuneRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
+  '/marketplace/tokens': typeof MarketplaceTokensRoute
   '/mesh/nodes': typeof MeshNodesRoute
   '/models/$slug': typeof ModelsSlugRoute
   '/sandboxes/live': typeof SandboxesLiveRoute
@@ -269,7 +297,10 @@ export interface FileRouteTypes {
     | '/evals/judge-arena'
     | '/evals/synthesizer'
     | '/hardware/profiler'
+    | '/infrastructure/speculative'
+    | '/labs/auto-finetune'
     | '/labs/optimizer'
+    | '/marketplace/tokens'
     | '/mesh/nodes'
     | '/models/$slug'
     | '/sandboxes/live'
@@ -296,7 +327,10 @@ export interface FileRouteTypes {
     | '/evals/judge-arena'
     | '/evals/synthesizer'
     | '/hardware/profiler'
+    | '/infrastructure/speculative'
+    | '/labs/auto-finetune'
     | '/labs/optimizer'
+    | '/marketplace/tokens'
     | '/mesh/nodes'
     | '/models/$slug'
     | '/sandboxes/live'
@@ -324,7 +358,10 @@ export interface FileRouteTypes {
     | '/evals/judge-arena'
     | '/evals/synthesizer'
     | '/hardware/profiler'
+    | '/infrastructure/speculative'
+    | '/labs/auto-finetune'
     | '/labs/optimizer'
+    | '/marketplace/tokens'
     | '/mesh/nodes'
     | '/models/$slug'
     | '/sandboxes/live'
@@ -353,7 +390,10 @@ export interface RootRouteChildren {
   EvalsJudgeArenaRoute: typeof EvalsJudgeArenaRoute
   EvalsSynthesizerRoute: typeof EvalsSynthesizerRoute
   HardwareProfilerRoute: typeof HardwareProfilerRoute
+  InfrastructureSpeculativeRoute: typeof InfrastructureSpeculativeRoute
+  LabsAutoFinetuneRoute: typeof LabsAutoFinetuneRoute
   LabsOptimizerRoute: typeof LabsOptimizerRoute
+  MarketplaceTokensRoute: typeof MarketplaceTokensRoute
   MeshNodesRoute: typeof MeshNodesRoute
   ModelsSlugRoute: typeof ModelsSlugRoute
   SandboxesLiveRoute: typeof SandboxesLiveRoute
@@ -469,11 +509,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HardwareProfilerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/infrastructure/speculative': {
+      id: '/infrastructure/speculative'
+      path: '/infrastructure/speculative'
+      fullPath: '/infrastructure/speculative'
+      preLoaderRoute: typeof InfrastructureSpeculativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/labs/auto-finetune': {
+      id: '/labs/auto-finetune'
+      path: '/labs/auto-finetune'
+      fullPath: '/labs/auto-finetune'
+      preLoaderRoute: typeof LabsAutoFinetuneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/labs/optimizer': {
       id: '/labs/optimizer'
       path: '/labs/optimizer'
       fullPath: '/labs/optimizer'
       preLoaderRoute: typeof LabsOptimizerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace/tokens': {
+      id: '/marketplace/tokens'
+      path: '/marketplace/tokens'
+      fullPath: '/marketplace/tokens'
+      preLoaderRoute: typeof MarketplaceTokensRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mesh/nodes': {
@@ -592,7 +653,10 @@ const rootRouteChildren: RootRouteChildren = {
   EvalsJudgeArenaRoute: EvalsJudgeArenaRoute,
   EvalsSynthesizerRoute: EvalsSynthesizerRoute,
   HardwareProfilerRoute: HardwareProfilerRoute,
+  InfrastructureSpeculativeRoute: InfrastructureSpeculativeRoute,
+  LabsAutoFinetuneRoute: LabsAutoFinetuneRoute,
   LabsOptimizerRoute: LabsOptimizerRoute,
+  MarketplaceTokensRoute: MarketplaceTokensRoute,
   MeshNodesRoute: MeshNodesRoute,
   ModelsSlugRoute: ModelsSlugRoute,
   SandboxesLiveRoute: SandboxesLiveRoute,

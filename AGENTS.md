@@ -19,3 +19,6 @@
 - Phase 5 datasets and topology are deterministic client-safe data; local templates and sample scans must never be described as autonomous execution or contamination evidence.
 - Phase 5 report persistence uses authenticated server functions and owner-only policies; regenerate sample reports server-side rather than trusting client-supplied metrics.
 - The Phase 5 topology uses a responsive Canvas renderer with token-derived colors; node selection must also work through the registry for keyboard access.
+- Phase 6 organization records use member reads and manager writes through authenticated server functions and RLS; sample metrics are regenerated server-side and never imply deployment or legal verification.
+- Phase 6 local drafts are non-sensitive planner settings only, while workspace records remain server-authorized; IndexedDB is not an authorization source.
+- Offline telemetry verification uses exact UTF-8 payload bytes and a separately provisioned ECDSA public key; deployment exports are unsigned templates, not complete air-gapped distributions.
