@@ -19,12 +19,16 @@ import { Route as RouterCalculatorRouteImport } from './routes/router-calculator
 import { Route as StatusRouteImport } from './routes/status'
 import { Route as AnalyticsFineTunesRouteImport } from './routes/analytics_.fine-tunes'
 import { Route as BenchmarksCustomRouteImport } from './routes/benchmarks.custom'
+import { Route as ComplianceSovereignRouteImport } from './routes/compliance.sovereign'
 import { Route as DevelopersCliRouteImport } from './routes/developers.cli'
 import { Route as EvalsAgenticRouteImport } from './routes/evals.agentic'
 import { Route as EvalsJudgeArenaRouteImport } from './routes/evals.judge-arena'
 import { Route as EvalsSynthesizerRouteImport } from './routes/evals.synthesizer'
 import { Route as HardwareProfilerRouteImport } from './routes/hardware.profiler'
+import { Route as InfrastructureSpeculativeRouteImport } from './routes/infrastructure.speculative'
+import { Route as LabsAutoFinetuneRouteImport } from './routes/labs.auto-finetune'
 import { Route as LabsOptimizerRouteImport } from './routes/labs.optimizer'
+import { Route as MarketplaceTokensRouteImport } from './routes/marketplace.tokens'
 import { Route as MeshNodesRouteImport } from './routes/mesh.nodes'
 import { Route as ModelsSlugRouteImport } from './routes/models.$slug'
 import { Route as SandboxesLiveRouteImport } from './routes/sandboxes.live'
@@ -85,6 +89,11 @@ const BenchmarksCustomRoute = BenchmarksCustomRouteImport.update({
   path: '/benchmarks/custom',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComplianceSovereignRoute = ComplianceSovereignRouteImport.update({
+  id: '/compliance/sovereign',
+  path: '/compliance/sovereign',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DevelopersCliRoute = DevelopersCliRouteImport.update({
   id: '/developers/cli',
   path: '/developers/cli',
@@ -110,9 +119,25 @@ const HardwareProfilerRoute = HardwareProfilerRouteImport.update({
   path: '/hardware/profiler',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InfrastructureSpeculativeRoute =
+  InfrastructureSpeculativeRouteImport.update({
+    id: '/infrastructure/speculative',
+    path: '/infrastructure/speculative',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LabsAutoFinetuneRoute = LabsAutoFinetuneRouteImport.update({
+  id: '/labs/auto-finetune',
+  path: '/labs/auto-finetune',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LabsOptimizerRoute = LabsOptimizerRouteImport.update({
   id: '/labs/optimizer',
   path: '/labs/optimizer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceTokensRoute = MarketplaceTokensRouteImport.update({
+  id: '/marketplace/tokens',
+  path: '/marketplace/tokens',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MeshNodesRoute = MeshNodesRouteImport.update({
@@ -179,12 +204,16 @@ export interface FileRoutesByFullPath {
   '/status': typeof StatusRoute
   '/analytics/fine-tunes': typeof AnalyticsFineTunesRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/compliance/sovereign': typeof ComplianceSovereignRoute
   '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
   '/evals/synthesizer': typeof EvalsSynthesizerRoute
   '/hardware/profiler': typeof HardwareProfilerRoute
+  '/infrastructure/speculative': typeof InfrastructureSpeculativeRoute
+  '/labs/auto-finetune': typeof LabsAutoFinetuneRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
+  '/marketplace/tokens': typeof MarketplaceTokensRoute
   '/mesh/nodes': typeof MeshNodesRoute
   '/models/$slug': typeof ModelsSlugRoute
   '/sandboxes/live': typeof SandboxesLiveRoute
@@ -206,12 +235,16 @@ export interface FileRoutesByTo {
   '/status': typeof StatusRoute
   '/analytics/fine-tunes': typeof AnalyticsFineTunesRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/compliance/sovereign': typeof ComplianceSovereignRoute
   '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
   '/evals/synthesizer': typeof EvalsSynthesizerRoute
   '/hardware/profiler': typeof HardwareProfilerRoute
+  '/infrastructure/speculative': typeof InfrastructureSpeculativeRoute
+  '/labs/auto-finetune': typeof LabsAutoFinetuneRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
+  '/marketplace/tokens': typeof MarketplaceTokensRoute
   '/mesh/nodes': typeof MeshNodesRoute
   '/models/$slug': typeof ModelsSlugRoute
   '/sandboxes/live': typeof SandboxesLiveRoute
@@ -235,12 +268,16 @@ export interface FileRoutesById {
   '/status': typeof StatusRoute
   '/analytics_/fine-tunes': typeof AnalyticsFineTunesRoute
   '/benchmarks/custom': typeof BenchmarksCustomRoute
+  '/compliance/sovereign': typeof ComplianceSovereignRoute
   '/developers/cli': typeof DevelopersCliRoute
   '/evals/agentic': typeof EvalsAgenticRoute
   '/evals/judge-arena': typeof EvalsJudgeArenaRoute
   '/evals/synthesizer': typeof EvalsSynthesizerRoute
   '/hardware/profiler': typeof HardwareProfilerRoute
+  '/infrastructure/speculative': typeof InfrastructureSpeculativeRoute
+  '/labs/auto-finetune': typeof LabsAutoFinetuneRoute
   '/labs/optimizer': typeof LabsOptimizerRoute
+  '/marketplace/tokens': typeof MarketplaceTokensRoute
   '/mesh/nodes': typeof MeshNodesRoute
   '/models/$slug': typeof ModelsSlugRoute
   '/sandboxes/live': typeof SandboxesLiveRoute
@@ -264,12 +301,16 @@ export interface FileRouteTypes {
     | '/status'
     | '/analytics/fine-tunes'
     | '/benchmarks/custom'
+    | '/compliance/sovereign'
     | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
     | '/evals/synthesizer'
     | '/hardware/profiler'
+    | '/infrastructure/speculative'
+    | '/labs/auto-finetune'
     | '/labs/optimizer'
+    | '/marketplace/tokens'
     | '/mesh/nodes'
     | '/models/$slug'
     | '/sandboxes/live'
@@ -291,12 +332,16 @@ export interface FileRouteTypes {
     | '/status'
     | '/analytics/fine-tunes'
     | '/benchmarks/custom'
+    | '/compliance/sovereign'
     | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
     | '/evals/synthesizer'
     | '/hardware/profiler'
+    | '/infrastructure/speculative'
+    | '/labs/auto-finetune'
     | '/labs/optimizer'
+    | '/marketplace/tokens'
     | '/mesh/nodes'
     | '/models/$slug'
     | '/sandboxes/live'
@@ -319,12 +364,16 @@ export interface FileRouteTypes {
     | '/status'
     | '/analytics_/fine-tunes'
     | '/benchmarks/custom'
+    | '/compliance/sovereign'
     | '/developers/cli'
     | '/evals/agentic'
     | '/evals/judge-arena'
     | '/evals/synthesizer'
     | '/hardware/profiler'
+    | '/infrastructure/speculative'
+    | '/labs/auto-finetune'
     | '/labs/optimizer'
+    | '/marketplace/tokens'
     | '/mesh/nodes'
     | '/models/$slug'
     | '/sandboxes/live'
@@ -348,12 +397,16 @@ export interface RootRouteChildren {
   StatusRoute: typeof StatusRoute
   AnalyticsFineTunesRoute: typeof AnalyticsFineTunesRoute
   BenchmarksCustomRoute: typeof BenchmarksCustomRoute
+  ComplianceSovereignRoute: typeof ComplianceSovereignRoute
   DevelopersCliRoute: typeof DevelopersCliRoute
   EvalsAgenticRoute: typeof EvalsAgenticRoute
   EvalsJudgeArenaRoute: typeof EvalsJudgeArenaRoute
   EvalsSynthesizerRoute: typeof EvalsSynthesizerRoute
   HardwareProfilerRoute: typeof HardwareProfilerRoute
+  InfrastructureSpeculativeRoute: typeof InfrastructureSpeculativeRoute
+  LabsAutoFinetuneRoute: typeof LabsAutoFinetuneRoute
   LabsOptimizerRoute: typeof LabsOptimizerRoute
+  MarketplaceTokensRoute: typeof MarketplaceTokensRoute
   MeshNodesRoute: typeof MeshNodesRoute
   ModelsSlugRoute: typeof ModelsSlugRoute
   SandboxesLiveRoute: typeof SandboxesLiveRoute
@@ -434,6 +487,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BenchmarksCustomRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compliance/sovereign': {
+      id: '/compliance/sovereign'
+      path: '/compliance/sovereign'
+      fullPath: '/compliance/sovereign'
+      preLoaderRoute: typeof ComplianceSovereignRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/developers/cli': {
       id: '/developers/cli'
       path: '/developers/cli'
@@ -469,11 +529,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HardwareProfilerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/infrastructure/speculative': {
+      id: '/infrastructure/speculative'
+      path: '/infrastructure/speculative'
+      fullPath: '/infrastructure/speculative'
+      preLoaderRoute: typeof InfrastructureSpeculativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/labs/auto-finetune': {
+      id: '/labs/auto-finetune'
+      path: '/labs/auto-finetune'
+      fullPath: '/labs/auto-finetune'
+      preLoaderRoute: typeof LabsAutoFinetuneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/labs/optimizer': {
       id: '/labs/optimizer'
       path: '/labs/optimizer'
       fullPath: '/labs/optimizer'
       preLoaderRoute: typeof LabsOptimizerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace/tokens': {
+      id: '/marketplace/tokens'
+      path: '/marketplace/tokens'
+      fullPath: '/marketplace/tokens'
+      preLoaderRoute: typeof MarketplaceTokensRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mesh/nodes': {
@@ -587,12 +668,16 @@ const rootRouteChildren: RootRouteChildren = {
   StatusRoute: StatusRoute,
   AnalyticsFineTunesRoute: AnalyticsFineTunesRoute,
   BenchmarksCustomRoute: BenchmarksCustomRoute,
+  ComplianceSovereignRoute: ComplianceSovereignRoute,
   DevelopersCliRoute: DevelopersCliRoute,
   EvalsAgenticRoute: EvalsAgenticRoute,
   EvalsJudgeArenaRoute: EvalsJudgeArenaRoute,
   EvalsSynthesizerRoute: EvalsSynthesizerRoute,
   HardwareProfilerRoute: HardwareProfilerRoute,
+  InfrastructureSpeculativeRoute: InfrastructureSpeculativeRoute,
+  LabsAutoFinetuneRoute: LabsAutoFinetuneRoute,
   LabsOptimizerRoute: LabsOptimizerRoute,
+  MarketplaceTokensRoute: MarketplaceTokensRoute,
   MeshNodesRoute: MeshNodesRoute,
   ModelsSlugRoute: ModelsSlugRoute,
   SandboxesLiveRoute: SandboxesLiveRoute,

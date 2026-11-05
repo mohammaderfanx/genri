@@ -7,7 +7,7 @@ export const routes6 = [
  {target:'mistral-large',draft:'ministral-8b',name:'Mistral Large',draftName:'Ministral 8B',acceptance:76.9,reduction:39.5,cache:83.1,k:5},
  {target:'gemma-3-27b',draft:'gemma-3-1b',name:'Gemma 3 27B',draftName:'Gemma 3 1B',acceptance:85.3,reduction:51.2,cache:88.7,k:7},
 ];
-export const adapters6 = ['Medical-RAG-v3-LoRA','Legal-EU-QLoRA','Code-Repair-v2','Finance-Extract-v4','Support-Alignment','Biomedical-QA','Reasoning-SG','Secure-Tools-v1'].map((name,i)=>({name,model:routes6[i%5].target,rank:[16,32,8,64][i%4],alpha:[32,64,16,128][i%4],base:72+i*1.7,tuned:78+i*1.8,cost:4.2+i*2.4,domain:['Medical','Legal','Code','Finance'][i%4],status:['deployed_active','evaluating','training','archived'][i%4] as 'deployed_active'|'evaluating'|'training'|'archived'}));
+export const adapters6 = ['Medical-RAG-v3-LoRA','Legal-EU-QLoRA','Code-Repair-v2','Finance-Extract-v4','Support-Alignment','Biomedical-QA','Reasoning-SG','Secure-Tools-v1'].map((name,i)=>({name,model:routes6[i%5]?.target ?? 'llama-3-3-70b',rank:[16,32,8,64][i%4] ?? 16,alpha:[32,64,16,128][i%4] ?? 32,base:72+i*1.7,tuned:78+i*1.8,cost:4.2+i*2.4,domain:['Medical','Legal','Code','Finance'][i%4] ?? 'Medical',status:['deployed_active','evaluating','training','archived'][i%4] as 'deployed_active'|'evaluating'|'training'|'archived'}));
 export const jurisdictions=['EU_GDPR_AI_Act','US_HIPAA','SG_PDPA','Air_Gapped_OnPrem'] as const;
 export const scorecards6 = [
  {provider:'AWS Bedrock',model:'llama-3-3-70b',region:'eu-central-1',jurisdiction:jurisdictions[0],score:88,retention:'Contract required',boundary:'Frankfurt'},

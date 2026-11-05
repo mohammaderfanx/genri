@@ -27,6 +27,10 @@ const links = [
   { to: "/hardware/profiler", label: "Silicon", icon: Calculator },
   { to: "/security/redteam", label: "Red Team", icon: Gavel },
   { to: "/mesh/nodes", label: "Edge Mesh", icon: Activity },
+  { to: "/infrastructure/speculative", label: "Speculative", icon: GitCompare },
+  { to: "/compliance/sovereign", label: "Sovereign", icon: Gavel },
+  { to: "/labs/auto-finetune", label: "Adapters", icon: FlaskConical },
+  { to: "/marketplace/tokens", label: "Token Market", icon: LineChart },
 ] as const;
 
 export function SiteHeader() {
