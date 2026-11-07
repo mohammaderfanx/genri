@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { useState } from 'react';
-import { Link } from '@tanstack/react-router';
+import { Link, useHydrated } from '@tanstack/react-router';
 import { useServerFn } from '@tanstack/react-start';
 import { GitBranch, ShieldCheck, Layers, ChartNoAxesCombined, Save, History } from 'lucide-react';
 import { Button } from './ui/button';
@@ -10,7 +10,7 @@ import { useUser } from '@/lib/auth';
 import { saveGridConfig, listGridConfigs } from '@/lib/phase6.functions';
 import { managePhase6 } from '@/lib/phase6';
 const tabs=[{to:'/infrastructure/speculative',name:'Speculative',icon:GitBranch},{to:'/compliance/sovereign',name:'Sovereign',icon:ShieldCheck},{to:'/labs/auto-finetune',name:'Adapters',icon:Layers},{to:'/marketplace/tokens',name:'Clearinghouse',icon:ChartNoAxesCombined}] as const;
-export function Phase6Shell({title,label,children}:{title:string;label:string;children:ReactNode}) {return <main className="mx-auto max-w-7xl px-4 py-8"><div className="mb-6 flex flex-wrap items-end justify-between gap-3"><div><p className="mb-2 font-mono text-xs text-speed">GENRI GRID / PHASE 06 / {label}</p><h1 className="text-3xl font-semibold">{title}</h1></div><DemoBadge>SAMPLE SCENARIOS · NOT LIVE EXECUTION</DemoBadge></div><nav aria-label="Phase 6 grid" className="mb-6 flex gap-1 overflow-x-auto border-b pb-3">{tabs.map(({to,name,icon:Icon})=><Button asChild key={to} variant="ghost" size="sm"><Link to={to} activeProps={{className:'bg-secondary text-foreground'}}><Icon/>{name}</Link></Button>)}</nav>{children}</main>;}
+export function Phase6Shell({title,label,children}:{title:string;label:string;children:ReactNode}) {const hydrated=useHydrated();return <main data-ready={hydrated} className="mx-auto max-w-7xl px-4 py-8"><div className="mb-6 flex flex-wrap items-end justify-between gap-3"><div><p className="mb-2 font-mono text-xs text-speed">GENRI GRID / PHASE 06 / {label}</p><h1 className="text-3xl font-semibold">{title}</h1></div><DemoBadge>SAMPLE SCENARIOS · NOT LIVE EXECUTION</DemoBadge></div><nav aria-label="Phase 6 grid" className="mb-6 flex gap-1 overflow-x-auto border-b pb-3">{tabs.map(({to,name,icon:Icon})=><Button asChild key={to} variant="ghost" size="sm"><Link to={to} activeProps={{className:'bg-secondary text-foreground'}}><Icon/>{name}</Link></Button>)}</nav>{children}</main>;}
 export function GridSave({kind,index,k=5,cache=true}:{kind:'route'|'adapter'|'audit';index:number;k?:number;cache?:boolean}) {
  const {user}=useUser();
  if(!user)return <div className="mt-6 border-t pt-4"><Button asChild variant="outline"><Link to="/auth"><Save/>Sign in to save configuration</Link></Button></div>;
