@@ -29,6 +29,13 @@
       "when": 1794057481121,
       "tag": "0003_tighten_public_read_policies",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794058338063,
+      "tag": "0004_phase7_private_workspaces",
+      "breakpoints": true
     }
   ]
 }
