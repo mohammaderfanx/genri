@@ -22,6 +22,13 @@
       "when": 1793790672015,
       "tag": "0002_phase6_governance_grid",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1794057481121,
+      "tag": "0003_tighten_public_read_policies",
+      "breakpoints": true
     }
   ]
 }
