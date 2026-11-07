@@ -339,6 +339,53 @@ export type Database = {
         }
         Relationships: []
       }
+      model_merge_recipes: {
+        Row: {
+          benchmark_gain_delta: Json
+          created_at: string
+          id: string
+          layer_weight_distribution: Json
+          merge_method: Database["public"]["Enums"]["merge_method"]
+          merged_model_name: string
+          org_id: string
+          parent_model_ids: Json
+          source: string
+          status: Database["public"]["Enums"]["merge_status"]
+        }
+        Insert: {
+          benchmark_gain_delta?: Json
+          created_at?: string
+          id?: string
+          layer_weight_distribution?: Json
+          merge_method: Database["public"]["Enums"]["merge_method"]
+          merged_model_name: string
+          org_id: string
+          parent_model_ids?: Json
+          source?: string
+          status?: Database["public"]["Enums"]["merge_status"]
+        }
+        Update: {
+          benchmark_gain_delta?: Json
+          created_at?: string
+          id?: string
+          layer_weight_distribution?: Json
+          merge_method?: Database["public"]["Enums"]["merge_method"]
+          merged_model_name?: string
+          org_id?: string
+          parent_model_ids?: Json
+          source?: string
+          status?: Database["public"]["Enums"]["merge_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "model_merge_recipes_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       multi_agent_judge_evals: {
         Row: {
           bias_mitigation_meta: Json
@@ -477,6 +524,50 @@ export type Database = {
           stripe_customer_id?: string | null
         }
         Relationships: []
+      }
+      pqc_telemetry_verifications: {
+        Row: {
+          algorithm: Database["public"]["Enums"]["pqc_algorithm"]
+          id: string
+          org_id: string
+          payload_hash: string
+          probe_node_id: string
+          public_key_fingerprint: string
+          source: string
+          timestamp: string
+          verification_status: Database["public"]["Enums"]["pqc_status"]
+        }
+        Insert: {
+          algorithm: Database["public"]["Enums"]["pqc_algorithm"]
+          id?: string
+          org_id: string
+          payload_hash: string
+          probe_node_id: string
+          public_key_fingerprint: string
+          source?: string
+          timestamp?: string
+          verification_status: Database["public"]["Enums"]["pqc_status"]
+        }
+        Update: {
+          algorithm?: Database["public"]["Enums"]["pqc_algorithm"]
+          id?: string
+          org_id?: string
+          payload_hash?: string
+          probe_node_id?: string
+          public_key_fingerprint?: string
+          source?: string
+          timestamp?: string
+          verification_status?: Database["public"]["Enums"]["pqc_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pqc_telemetry_verifications_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       security_redteam_scans: {
         Row: {
@@ -638,6 +729,63 @@ export type Database = {
           },
         ]
       }
+      swarm_topologies: {
+        Row: {
+          consensus_protocol: Database["public"]["Enums"]["swarm_consensus"]
+          cost_per_execution_usd: number
+          created_at: string
+          graph: Json
+          id: string
+          name: string
+          node_assignments: Json
+          orchestrator_model_id: string
+          org_id: string
+          overall_tps: number
+          source: string
+        }
+        Insert: {
+          consensus_protocol?: Database["public"]["Enums"]["swarm_consensus"]
+          cost_per_execution_usd?: number
+          created_at?: string
+          graph?: Json
+          id?: string
+          name: string
+          node_assignments?: Json
+          orchestrator_model_id: string
+          org_id: string
+          overall_tps?: number
+          source?: string
+        }
+        Update: {
+          consensus_protocol?: Database["public"]["Enums"]["swarm_consensus"]
+          cost_per_execution_usd?: number
+          created_at?: string
+          graph?: Json
+          id?: string
+          name?: string
+          node_assignments?: Json
+          orchestrator_model_id?: string
+          org_id?: string
+          overall_tps?: number
+          source?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "swarm_topologies_orchestrator_model_id_fkey"
+            columns: ["orchestrator_model_id"]
+            isOneToOne: false
+            referencedRelation: "ai_models"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "swarm_topologies_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       synthetic_benchmark_suites: {
         Row: {
           contamination_risk_score: number | null
@@ -699,8 +847,12 @@ export type Database = {
     Enums: {
       adapter_status: "training" | "evaluating" | "deployed_active" | "archived"
       job_status: "queued" | "running" | "completed" | "failed"
+      merge_method: "SLERP" | "DARE" | "TIES" | "Passthrough" | "Frankenmerge"
+      merge_status: "compiling" | "benchmarking" | "published" | "failed"
       org_plan: "free" | "pro" | "enterprise"
       org_role: "owner" | "admin" | "evaluator" | "viewer"
+      pqc_algorithm: "CRYSTALS-Dilithium" | "Falcon" | "SPHINCS+"
+      pqc_status: "Valid" | "Corrupted" | "Replay_Attack_Blocked"
       quantization_level: "FP16" | "BF16" | "INT8" | "INT4" | "AWQ" | "GGUF_Q4"
       redteam_vector:
         | "Prompt Injection"
@@ -712,6 +864,11 @@ export type Database = {
         | "US_HIPAA"
         | "SG_PDPA"
         | "Air_Gapped_OnPrem"
+      swarm_consensus:
+        | "Majority_Vote"
+        | "Weighted_Elo"
+        | "Hierarchical_Judge"
+        | "Zero_Trust_Cross_Verification"
       synthesis_domain:
         | "Quantum Computing"
         | "Distributed Consensus"
@@ -846,8 +1003,12 @@ export const Constants = {
     Enums: {
       adapter_status: ["training", "evaluating", "deployed_active", "archived"],
       job_status: ["queued", "running", "completed", "failed"],
+      merge_method: ["SLERP", "DARE", "TIES", "Passthrough", "Frankenmerge"],
+      merge_status: ["compiling", "benchmarking", "published", "failed"],
       org_plan: ["free", "pro", "enterprise"],
       org_role: ["owner", "admin", "evaluator", "viewer"],
+      pqc_algorithm: ["CRYSTALS-Dilithium", "Falcon", "SPHINCS+"],
+      pqc_status: ["Valid", "Corrupted", "Replay_Attack_Blocked"],
       quantization_level: ["FP16", "BF16", "INT8", "INT4", "AWQ", "GGUF_Q4"],
       redteam_vector: [
         "Prompt Injection",
@@ -860,6 +1021,12 @@ export const Constants = {
         "US_HIPAA",
         "SG_PDPA",
         "Air_Gapped_OnPrem",
+      ],
+      swarm_consensus: [
+        "Majority_Vote",
+        "Weighted_Elo",
+        "Hierarchical_Judge",
+        "Zero_Trust_Cross_Verification",
       ],
       synthesis_domain: [
         "Quantum Computing",

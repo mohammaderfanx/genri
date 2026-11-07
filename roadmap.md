@@ -1,4 +1,7 @@
 # Roadmap
+- [ ] Phase 7: editable swarm DAG and local trace, MergeKit recipe export, PQC verification portal, neural architecture and 3D sample retrieval matrix
+- [ ] Phase 7: organization-scoped configuration storage, tests and signed-in save/read-back verification
+- [ ] Phase 7: live swarm execution, weight merging and authenticated PQC provider ledger (blocked: execution services, weight assets and independently trusted telemetry issuer required)
 - [x] Phase 6: four dense workspaces, five speculative profiles, eight adapter sample runs and sample compliance/market data
 - [x] Phase 6: organization-scoped adapter, route and audit storage with manager-role tests and signed-in save/read-back verification
 - [x] Phase 6: offline signature verification, deployment templates and indexed local planner cache (not multi-tenant state synchronization)
