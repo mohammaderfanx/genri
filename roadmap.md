@@ -1,7 +1,7 @@
 # Roadmap
-- [ ] Phase 6: four dense workspaces, five speculative profiles, eight adapter sample runs and sample compliance/market data
-- [ ] Phase 6: organization-scoped adapter, route and audit storage with permission tests and signed-in verification
-- [ ] Phase 6: offline signature verification, deployment templates and indexed local configuration cache
+- [x] Phase 6: four dense workspaces, five speculative profiles, eight adapter sample runs and sample compliance/market data
+- [x] Phase 6: organization-scoped adapter, route and audit storage with manager-role tests and signed-in save/read-back verification
+- [x] Phase 6: offline signature verification, deployment templates and indexed local planner cache (not multi-tenant state synchronization)
 - [ ] Phase 6: live speculative/KV execution, training/deployment loop, legal evidence and compute trading (blocked: serving/training/provider integrations and independently issued compliance evidence required)
 - [x] Phase 5: local template synthesizer, sample hardware profiler, red-team replay and 128-node Canvas mesh
 - [x] Phase 5: private report storage, signed-in save/read-back checks and local HTTP probe capture
